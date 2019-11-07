@@ -27,6 +27,7 @@
                 <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
             </div>
         </header>
+        <h3>The database text: <span id="data">...</span></h3>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
@@ -50,16 +51,21 @@
     <script>
         var db = firebase.firestore();
         db.collection("students").doc("Alireza").set({
-            first: "Alireza",
+            first: "Ali",
             last: "Kakan",
             born: 1997
         })
         .then(function(docRef) {
-            console.log("Document successfully wrritten!");
+            console.log("Document successfully written!");
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
         });
+
+        db.collection("students").doc("Alireza")
+            .onSnapshot(function(doc) {
+                document.getElementById("data").innerHTML = doc.data().first;
+    });
     </script>
     
     <!-- Optional JavaScript -->
