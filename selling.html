@@ -6,5 +6,21 @@
     <body>
         <h1> Selling </h1>
         <h4> Selling the textbooks </h4>
+
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+        <script src="firebase_setup.js">
+        </script>
+
+        <script >
+            
+            db.collection("Books").doc("Dumbo").set({
+                Author: "George"
+            }).then(function(){
+                console.log("Dumbo has been listed for sale!")
+            })
+
+        </script>
     </body>
 </html>
