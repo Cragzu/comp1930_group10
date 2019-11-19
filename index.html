@@ -20,25 +20,23 @@
   <body>
 
   <!--HTML-->
-  <template>
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-xs-4">
-                  <a href="login.html"><button type="button" class="btn btn-primary">Login/Signup</button></a>
-              </div>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-xs-4">
+              <a href="login.html"><button type="button" class="btn btn-primary">Login/Signup</button></a>
+          </div>
 
-              <div class="col-sm-4">
-                  <span><h3>Buysell UsedBooks</h3></span>
-              </div>
+          <div class="col-sm-4">
+              <span><h3>Buysell UsedBooks</h3></span>
+          </div>
 
-              <div class="col-sm-4">
-                  <button type="button" class="btn btn-success">
-                      <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                  </button>
-              </div>
+          <div class="col-sm-4">
+              <button type="button" class="btn btn-success">
+                  <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+              </button>
           </div>
       </div>
-  </template>
+  </div>
 
     <script>
         db.collection("users").doc("RandomHatGuy").set({

@@ -45,14 +45,14 @@
 
     <script>
 
-        let bookTitle = document.getElementById("bookTitle").innerHTML
-        let authorName = document.getElementById("authroName").innerHTML
-        let bookPrice = document.getElementById("bookPrice").innerHTML
+        let bookTitle = document.getElementById("bookTitle").innerHTML;
+        let authorName = document.getElementById("authorName").innerHTML;
+        let bookPrice = document.getElementById("bookPrice").innerHTML;
 
         function listBook() {
             db.collection("Books").doc(bookTitle).set({
                 // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
-                Author: authroName,
+                Author: authorName,
                 Title: bookTitle,
                 Price: bookPrice
             }).then(function () {
@@ -63,5 +63,4 @@
         }
     </script>
 </body>
-
 </html>
