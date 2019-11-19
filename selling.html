@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title> Selling Product </title>
-    </head>
-    <body>
-        <h1> Selling </h1>
-        <h4> Selling the textbooks </h4>
 
-        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+<head>
+    <title> Selling Product </title>
+</head>
 
-        <script src="firebase_setup.js">
-        </script>
+<body>
+    <h1> Selling </h1>
+    <h4> Selling the textbooks </h4>
 
-        <script >
-            
-            db.collection("Books").doc("Dumbo").set({
-                Author: "George"
-            }).then(function(){
-                console.log("Dumbo has been listed for sale!")
+    <div>
+        <form>
+            <div>
+                <label for="bookTitle">
+                    Title of Book:
+                </label>
+                <input type="text" id="bookTitle" name="book_title"
+                    placeholder="E.g. Writing In the Technical Fields 2nd Edition">
+            </div>
+            <div>
+                <label fo="author">
+                    Author:
+                </label>
+                <input type="text" id="authorName" name="author_name" placeholder="Thorsten Ewald">
+            </div>
+            <div>
+                <label for="bookPrice">
+                    Price:
+                </label>
+                <input type="text" id="bookPrice" name="book_price" placeholder="50.50">
+            </div>
+            <div>
+                <input type="submit" id="listButton" value="Post Listing">
+            </div>
+        </form>
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+    <script src="firebase_setup.js">
+    </script>
+
+    <script>
+
+        let bookTitle = document.getElementById("bookTitle").innerHTML
+        let authorName = document.getElementById("authroName").innerHTML
+        let bookPrice = document.getElementById("bookPrice").innerHTML
+
+        function listBook() {
+            db.collection("Books").doc(bookTitle).set({
+                // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
+                Author: authroName,
+                Title: bookTitle,
+                Price: bookPrice
+            }).then(function () {
+                console.log("A book had been successfully listed.")
+            }).catch()(function () {
+                console.log("User has failed trying to list a book.")
             })
+        }
+    </script>
+</body>
 
-        </script>
-    </body>
 </html>
