@@ -1,24 +1,36 @@
 body {
     background-color: #F2E3D8;
 }
-
-.row1 {
-    width: 90%;
-    margin: auto;
-}
 button {
     min-height: 50px;
     min-width: 50px;
     font-size: 20px;
 }
-
-h3 {
+h1 {
     font-size: 30px;
+
+}
+p {
+    font-size: 16px;
 }
 
-.col-sm-4 {
+.row1 {
+    width: 90%;
+    margin: auto;
+}
+.headerColumn {
     text-align: center;
-
+}
+.col-sm-8 {
+    background-color: #B56E57;
+    min-height: 200px;
+}
+.bookListingImageColumn {
+    position: relative;
+}
+.bookImage {
+    max-height: 150px;
+    padding-top: 10px;
 }
 
 #mainHeader {
