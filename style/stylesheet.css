@@ -1,4 +1,12 @@
-.row1{
+body {
+    background-color: #F2E3D8;
+}
+
+.row1 {
     width: 90%;
     margin: auto;
+}
+
+#mainHeader {
+    background-color: #ACD0D4;
 }

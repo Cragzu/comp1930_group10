@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="style/stylesheet.css">
+      <link rel="import" href="style/componentMainHeader.html">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -20,25 +21,16 @@
   <body>
 
   <!--HTML-->
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-xs-4">
-              <a href="login.html"><button type="button" class="btn btn-primary">Login/Signup</button></a>
-          </div>
 
-          <div class="col-sm-4">
-              <span><h3>Buysell UsedBooks</h3></span>
-          </div>
-
-          <div class="col-sm-4">
-              <button type="button" class="btn btn-success">
-                  <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-              </button>
-          </div>
-      </div>
-  </div>
 
     <script>
+        // Display header
+        let link = document.querySelector('link[rel=import]');
+        let content = link.import.querySelector('#mainHeader');
+        document.body.appendChild(content.cloneNode(true));
+
+
+
         db.collection("users").doc("RandomHatGuy").set({
             name: "Brian",
             password: "password123",
