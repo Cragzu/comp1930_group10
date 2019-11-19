@@ -6,7 +6,23 @@ body {
     width: 90%;
     margin: auto;
 }
+button {
+    min-height: 50px;
+    min-width: 50px;
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+.col-sm-4 {
+    text-align: center;
+
+}
 
 #mainHeader {
     background-color: #ACD0D4;
+    min-height: 50px;
+    margin-bottom: 25px;
 }
