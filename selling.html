@@ -37,7 +37,7 @@
                 <input type="text" id="bookPrice" name="book_price" placeholder="50.50">
             </div>
             <div>
-                <input type="submit" id="listButton" value="Post Listing">
+                <input type="button" id="listButton" value="Post Listing">
             </div>
         </form>
 
@@ -52,13 +52,14 @@
     <script>
 
 
-        // let user = firebase.auth().currentUser;
+        
         function listBook() {
             let bookTitle = document.getElementById("bookTitle").value;
             let authorName = document.getElementById("authorName").value;
             let bookPrice = document.getElementById("bookPrice").value;
             console.log("This is the start of listing a book.")
-            db.collection("Books").doc(bookTitle).set({
+            let user = firebase.auth().currentUser;
+            db.collection("Books").add({
                 // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
                 Author: authorName,
                 Title: bookTitle,
