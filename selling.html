@@ -44,6 +44,7 @@
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
     <script src="scripts/firebase_setup.js">
@@ -52,13 +53,13 @@
     <script>
 
 
-        
+let user = firebase.auth().currentUser;
         function listBook() {
             let bookTitle = document.getElementById("bookTitle").value;
             let authorName = document.getElementById("authorName").value;
             let bookPrice = document.getElementById("bookPrice").value;
             console.log("This is the start of listing a book.")
-            let user = firebase.auth().currentUser;
+            
             db.collection("Books").add({
                 // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
                 Author: authorName,
@@ -71,15 +72,15 @@
             })
         }
 
-        // firebase.auth().onAuthStateChanged(function(user){
-        //     if (user) {
-        //         setInterval(function(){
-        //             console.log(`There is a user logged in. User: ${user}`)
-        //         }, 2000)
-        //     } else{
-        //         console.log(`No one is logged in`)
-        //     }
-        // })
+        firebase.auth().onAuthStateChanged(function(user){
+            if (user) {
+                setInterval(function(){
+                    console.log(`There is a user logged in. User: ${user}`)
+                }, 2000)
+            } else{
+                console.log(`No one is logged in`)
+            }
+        })
 
         document.getElementById("listButton").onclick = listBook;
 
