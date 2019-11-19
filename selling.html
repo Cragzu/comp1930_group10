@@ -51,11 +51,13 @@
 
     <script>
 
-        let bookTitle = document.getElementById("bookTitle").innerHTML;
-        let authorName = document.getElementById("authorName").innerHTML;
-        let bookPrice = document.getElementById("bookPrice").innerHTML;
 
+        // let user = firebase.auth().currentUser;
         function listBook() {
+            let bookTitle = document.getElementById("bookTitle").value;
+            let authorName = document.getElementById("authorName").value;
+            let bookPrice = document.getElementById("bookPrice").value;
+            console.log("This is the start of listing a book.")
             db.collection("Books").doc(bookTitle).set({
                 // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
                 Author: authorName,
@@ -63,10 +65,24 @@
                 Price: bookPrice
             }).then(function () {
                 console.log("A book had been successfully listed.")
-            }).catch()(function () {
+            }).catch(function(){
                 console.log("User has failed trying to list a book.")
             })
         }
+
+        // firebase.auth().onAuthStateChanged(function(user){
+        //     if (user) {
+        //         setInterval(function(){
+        //             console.log(`There is a user logged in. User: ${user}`)
+        //         }, 2000)
+        //     } else{
+        //         console.log(`No one is logged in`)
+        //     }
+        // })
+
+        document.getElementById("listButton").onclick = listBook;
+
     </script>
 </body>
+
 </html>
