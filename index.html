@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="style/stylesheet.css">
 
       <link rel="import" href="components/componentMainHeader.html" id="importHeader">
-      <link rel="import" href="components/componentBookListingBlock.html">
+      <link rel="import" href="components/componentBookListingBlock.html" id="importBookListingBlock">
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -35,6 +35,7 @@
   <!--Our Scripts-->
   <script src="scripts/firebase_setup.js"></script>
   <script src="scripts/displayHeader.js"></script>
+  <script src="scripts/displayBookListingBlock.js">// why this no work?</script>
 
   <!--HTML-->
   <div class="container-fluid" id="bookListingBlock">
@@ -55,40 +56,5 @@
           <div class="col-sm-2"></div>
       </div>
   </div>
-
-    <script>
-
-        db.collection("users").doc("RandomHatGuy").set({
-            name: "Brian",
-            password: "password123",
-            email: "mailboxbrian.d@gmail.com",
-        });
-
-        db.collection("users").doc("christmas_lover").set({
-            name: "Santa",
-            password: "hohoho",
-            email: "saintnick@north.pole",
-        });
-
-        db.collection("users").doc("RandomHatGuy").collection("cart").doc("id1").set({
-            name: "Fifty Shades of Gray",
-            author: "E.L. James",
-            price: 69.0,
-            seller: "some_weird_social_sciences_student"
-        });
-
-        db.collection("books").doc("id2").set({
-            name: "Santa Claus is Coming to Town",
-            author: "Santa",
-            price: 25,
-            seller: "christmas_lover"
-        })
-
-        db.collection("users").doc("RandomHatGuy")
-            .onSnapshot(function(doc) {
-                document.getElementById("data").innerHTML = doc.data().name;
-    });
-    </script>
-
   </body>
 </html>
