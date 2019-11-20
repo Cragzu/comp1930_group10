@@ -35,6 +35,13 @@
                 <input type="text" id="bookPrice" name="book_price" placeholder="50.50">
             </div>
             <div>
+                <label for="bookDescription">
+                    Description:
+                </label>
+                <input type="text" id="bookDescription" name="book_description" placeholder="e.g. 7/10 condition. Only used for 1 term.">
+                <!-- This needs to be changed CSS wise to allow scrolling and a bigger text box -->
+            </div>
+            <div>
                 <input type="button" id="listButton" value="Post Listing">
             </div>
         </form>
@@ -75,6 +82,7 @@
             let bookTitle = document.getElementById("bookTitle").value;
             let authorName = document.getElementById("authorName").value;
             let bookPrice = document.getElementById("bookPrice").value;
+            let bookDescription = document.getElementById("bookDescription").value;
 
             
 
@@ -94,10 +102,11 @@
                     console.log("That was a letter")
                 }
                 return true
-
-
             }
+        }
 
+        function checkOnlyNumbers(userInput){
+            
         }
 
 
