@@ -8,8 +8,7 @@
 </head>
 
 <body>
-    <script src="scripts/displayHeader.js"></script>
-
+    <script src="scripts/displayHeader.js"></script> <!--Header should always be at the top of the body-->
     <h1> Selling </h1>
     <h4> Selling the textbooks </h4>
 
@@ -53,16 +52,12 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
     <script src="scripts/firebase_setup.js"></script>
-    <script src="scripts/displayHeader.js"></script>
 
     <script>
-
-
         let user = firebase.auth().currentUser;
         function listBook() {
 
             console.log("This is the start of listing a book.")
-
 
             db.collection("Books").add({
                 // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
@@ -75,7 +70,6 @@
                 console.log("User has failed trying to list a book.")
             })
         }
-
 
         function checkTextBox() {
             // This function will check all the text boxes first before you can list a book
