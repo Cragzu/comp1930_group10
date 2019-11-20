@@ -53,13 +53,12 @@
     <script>
 
 
-let user = firebase.auth().currentUser;
+        let user = firebase.auth().currentUser;
         function listBook() {
-            let bookTitle = document.getElementById("bookTitle").value;
-            let authorName = document.getElementById("authorName").value;
-            let bookPrice = document.getElementById("bookPrice").value;
+
             console.log("This is the start of listing a book.")
-            
+
+
             db.collection("Books").add({
                 // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
                 Author: authorName,
@@ -67,22 +66,55 @@ let user = firebase.auth().currentUser;
                 Price: bookPrice
             }).then(function () {
                 console.log("A book had been successfully listed.")
-            }).catch(function(){
+            }).catch(function () {
                 console.log("User has failed trying to list a book.")
             })
         }
 
-        firebase.auth().onAuthStateChanged(function(user){
+
+        function checkTextBox() {
+            // This function will check all the text boxes first before you can list a book
+            let bookTitle = document.getElementById("bookTitle").value;
+            let authorName = document.getElementById("authorName").value;
+            let bookPrice = document.getElementById("bookPrice").value;
+
+            
+
+        }
+
+        function checkForNumbers(userInput) {
+            // This function will take a string and put it in an array. That array will be tested to see if any of the elements in it are a number. If there is a number then return false, else return True at the end.
+            let userInputArray = userInput.split("")
+            console.log(userInputArray)
+            for (let i = 0; i < userInputArray.length; i++) {
+                if (!isNaN(userInputArray[i])) {
+                    // This is checking if the string is a number or a string.
+                    // !isNaN: is Not a Number Str = true, Num = false; ! is Not a Number Str = false, Num = true
+                    return false
+
+                } else {
+                    console.log("That was a letter")
+                }
+                return true
+
+
+            }
+
+        }
+
+
+        firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                setInterval(function(){
+                setInterval(function () {
                     console.log(`There is a user logged in. User: ${user}`)
                 }, 2000)
-            } else{
+            } else {
                 console.log(`No one is logged in`)
             }
         })
 
-        document.getElementById("listButton").onclick = listBook;
+        document.getElementById("listButton").onclick = checkTextBox;
+        // When you click the button it will check the fields before you can list the book.
 
     </script>
 </body>
