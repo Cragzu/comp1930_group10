@@ -1,48 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <title>StudySource</title>
               
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">      
-
-    </head>
-    <body>
-        
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style/stylesheet.css">
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-            https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyB28Ev5egbzbVAD8insx3Y92CLf0UdRvG4",
-                authDomain: "comp1930-group10.firebaseapp.com",
-                databaseURL: "https://comp1930-group10.firebaseio.com",
-                projectId: "comp1930-group10",
-                storageBucket: "comp1930-group10.appspot.com",
-                messagingSenderId: "20075829482",
-                appId: "1:20075829482:web:88590a324dc4aa1f46df93",
-                measurementId: "G-6X7FP4G9T1"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-        </script>
-
         <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    </head>
+    <body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpb
+    zo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHq
+    dSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pX
+    B1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--Our Scripts-->
+    <script src="scripts/firebase_setup.js"></script>
+    <script src="scripts/displayHeader.js"></script>
+
+        <script>
+            // Display header
+            let link = document.querySelector('link[rel=import]');
+            let content = link.import.querySelector('#mainHeader');
+            document.body.appendChild(content.cloneNode(true));
+        </script>
 
         <script>
             // Initialize the FirebaseUI Widget using Firebase.
@@ -81,10 +78,7 @@
 
             <!-- The surrounding HTML is left untouched by FirebaseUI.
             Your app may use that space for branding, controls and other customizations.-->
-            <h1>Welcome to Textbook Swapping</h1>
-            <p>Placeholder :)</p>
             <div id="firebaseui-auth-container"></div>
             <div id="loader">Loading...</div>
-
     </body>
 </html>
