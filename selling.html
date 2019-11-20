@@ -38,7 +38,8 @@
                 <label for="bookDescription">
                     Description:
                 </label>
-                <input type="text" id="bookDescription" name="book_description" placeholder="e.g. 7/10 condition. Only used for 1 term.">
+                <input type="text" id="bookDescription" name="book_description"
+                    placeholder="e.g. 7/10 condition. Only used for 1 term.">
                 <!-- This needs to be changed CSS wise to allow scrolling and a bigger text box -->
             </div>
             <div>
@@ -58,7 +59,9 @@
     <script>
 
 
-        let user = firebase.auth().currentUser;
+        let userStatus;
+
+
         function listBook() {
 
             console.log("This is the start of listing a book.")
@@ -78,13 +81,49 @@
 
 
         function checkTextBox() {
-            // This function will check all the text boxes first before you can list a book
+            // This fun ction will check all the text boxes first before you can list a book
             let bookTitle = document.getElementById("bookTitle").value;
             let authorName = document.getElementById("authorName").value;
             let bookPrice = document.getElementById("bookPrice").value;
             let bookDescription = document.getElementById("bookDescription").value;
+            let user = firebase.auth().currentUser;
+            let userName = user.displayName;
 
+            if (bookTitle && checkForNumbers(authorName) && checkOnlyNumbers(bookPrice) && bookDescription) {
+                /*
+                The conditions check is:
+                1. Is there something filled in for title?
+                2. Check if author name is only letters; this will automatically fail if nothing is filled in
+                3. Check if the price entered is a number; this will automatically fail if nothing is filled in
+                4. If there is ANYTHING typed in the book description section it will pass
+                */
+                console.log("The user passed all the fields")
+            }else{
+                console.log("One of the fields was failed")
+                console.log(`${bookTitle} ${checkForNumbers(authorName)} ${bookPrice} ${bookDescription}`)
+            }
+
+            // if (bookTitle){
+            //     console.log("Book title is working")
+            // }else{
+            //     console.log("Book title failed")
+
+            // }
+            // if (checkForNumbers(authorName)){
+            //     console.log("Author name is working")
+            // }else{
+            //     console.log("Author name failed")
+
+            // }
+            // if (){
+            //     console.log("Book title is working")
+            // }else{
+            //     console.log("Book title failed")
+
+            // }
             
+            
+
 
         }
 
@@ -96,32 +135,54 @@
                 if (!isNaN(userInputArray[i])) {
                     // This is checking if the string is a number or a string.
                     // !isNaN: is Not a Number Str = true, Num = false; ! is Not a Number Str = false, Num = true
+                    console.log("That was a number xd")
                     return false
 
                 } else {
                     console.log("That was a letter")
                 }
+            }
+            // If the string passes and no character in the string is a number then return true.
+            return true
+        }
+        function checkOnlyNumbers(userInput) {
+            if (isNaN(userInput)) {
+                // If the string is not a number then return false
+                return false
+            } else {
+                // If user input is a number then return true
                 return true
             }
         }
 
-        function checkOnlyNumbers(userInput){
-            
-        }
 
 
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                setInterval(function () {
-                    console.log(`There is a user logged in. User: ${user}`)
-                }, 2000)
-            } else {
-                console.log(`No one is logged in`)
-            }
-        })
+
 
         document.getElementById("listButton").onclick = checkTextBox;
         // When you click the button it will check the fields before you can list the book.
+
+
+        function init() {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+
+                    console.log(`There is a user logged in. User: ${user}`)
+                    userStatus = true
+                    // setInterval(function () {
+                    //     console.log(`There is a user logged in. User: ${user}`)
+                    //     console.log(user.displayName)
+                    // }, 2000)
+                } else {
+                    console.log(`No one is logged in`)
+                    return false
+                }
+            })
+
+        }
+
+
+        init();
 
     </script>
 </body>
