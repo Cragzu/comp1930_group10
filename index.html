@@ -1,14 +1,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-      <title>BuySell UsedBooks</title>
+      <title>StudySource</title>
 
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="style/stylesheet.css">
+
+      <link rel="import" href="components/componentMainHeader.html" id="importHeader">
+      <link rel="import" href="components/componentBookListingBlock.html" id="importBookListingBlock">
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -19,71 +23,38 @@
   </head>
   <body>
 
-  <!--HTML-->
-  <template>
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-xs-4">
-                  <a href="login.html"><button type="button" class="btn btn-primary">Login/Signup</button></a>
-              </div>
-
-              <div class="col-sm-4">
-                  <span><h3>Buysell UsedBooks</h3></span>
-              </div>
-
-              <div class="col-sm-4">
-                  <button type="button" class="btn btn-success">
-                      <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                  </button>
-              </div>
-          </div>
-      </div>
-  </template>
-
-    <script>
-        db.collection("users").doc("RandomHatGuy").set({
-            name: "Brian",
-            password: "password123",
-            email: "mailboxbrian.d@gmail.com",
-        });
-
-        db.collection("users").doc("christmas_lover").set({
-            name: "Santa",
-            password: "hohoho",
-            email: "saintnick@north.pole",
-        });
-
-        db.collection("users").doc("RandomHatGuy").collection("cart").doc("id1").set({
-            name: "Fifty Shades of Gray",
-            author: "E.L. James",
-            price: 69.0,
-            seller: "some_weird_social_sciences_student"
-        });
-
-        db.collection("books").doc("id2").set({
-            name: "Santa Claus is Coming to Town",
-            author: "Santa",
-            price: 25,
-            seller: "christmas_lover"
-        })
-
-        db.collection("users").doc("RandomHatGuy")
-            .onSnapshot(function(doc) {
-                document.getElementById("data").innerHTML = doc.data().name;
-    });
-    </script>
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpb
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpb
     zo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHq
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHq
     dSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pX
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pX
     B1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <!--Our Scripts-->
-  <script src="firebase_setup.js"></script>
+  <script src="scripts/firebase_setup.js"></script>
+  <script src="scripts/displayHeader.js"></script>
+  <script src="scripts/displayBookListingBlock.js">// why this no work?</script>
 
+  <!--HTML-->
+  <div class="container-fluid" id="bookListingBlock">
+      <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+
+              <div class="col-sm-4">
+                <img class="bookImage"
+                     src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
+              </div>
+              <div class="col-sm-8">
+                  <h1>Book Title</h1>
+                  <p>This is placeholder text for the short description of the book.</p>
+              </div>
+
+          </div>
+          <div class="col-sm-2"></div>
+      </div>
+  </div>
   </body>
 </html>

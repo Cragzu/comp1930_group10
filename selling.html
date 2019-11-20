@@ -2,10 +2,16 @@
 <html lang="en">
 
 <head>
-    <title> Selling Product </title>
+    <title>StudySource | Selling Product</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/stylesheet.css">
+
+    <link rel="import" href="components/componentMainHeader.html" id="importHeader">
 </head>
 
 <body>
+    <script src="scripts/displayHeader.js"></script>
+
     <h1> Selling </h1>
     <h4> Selling the textbooks </h4>
 
@@ -31,36 +37,53 @@
                 <input type="text" id="bookPrice" name="book_price" placeholder="50.50">
             </div>
             <div>
-                <input type="submit" id="listButton" value="Post Listing">
+                <input type="button" id="listButton" value="Post Listing">
             </div>
         </form>
 
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
-    <script src="firebase_setup.js">
+    <script src="scripts/firebase_setup.js">
     </script>
 
     <script>
 
-        let bookTitle = document.getElementById("bookTitle").innerHTML
-        let authorName = document.getElementById("authroName").innerHTML
-        let bookPrice = document.getElementById("bookPrice").innerHTML
 
+let user = firebase.auth().currentUser;
         function listBook() {
-            db.collection("Books").doc(bookTitle).set({
+            let bookTitle = document.getElementById("bookTitle").value;
+            let authorName = document.getElementById("authorName").value;
+            let bookPrice = document.getElementById("bookPrice").value;
+            console.log("This is the start of listing a book.")
+            
+            db.collection("Books").add({
                 // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
-                Author: authroName,
+                Author: authorName,
                 Title: bookTitle,
                 Price: bookPrice
             }).then(function () {
                 console.log("A book had been successfully listed.")
-            }).catch()(function () {
+            }).catch(function(){
                 console.log("User has failed trying to list a book.")
             })
         }
+
+        firebase.auth().onAuthStateChanged(function(user){
+            if (user) {
+                setInterval(function(){
+                    console.log(`There is a user logged in. User: ${user}`)
+                }, 2000)
+            } else{
+                console.log(`No one is logged in`)
+            }
+        })
+
+        document.getElementById("listButton").onclick = listBook;
+
     </script>
 </body>
 
