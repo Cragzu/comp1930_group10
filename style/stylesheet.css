@@ -71,3 +71,6 @@ p {
     text-decoration: none;
     color: #000000;
 }
+#bookSellingForm {
+    max-width: 700px;
+}
