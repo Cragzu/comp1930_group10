@@ -29,7 +29,7 @@
             </div>
             <div>
                 <label for="bookPrice">
-                    Price:
+                    Price(CAD):
                 </label>
                 <input type="text" id="bookPrice" name="book_price" placeholder="50.50">
             </div>
@@ -60,14 +60,16 @@
         let userStatus;
 
 
-        function listBook() {
+        function listBook(author, title, price, seller, description) {
 
             console.log("This is the start of listing a book.")
 
             db.collection("books").add({
                 Author: authorName,
                 Title: bookTitle,
-                Price: bookPrice
+                Price: bookPrice,
+                Seller: seller,
+                Description: description
             }).then(function () {
                 console.log("A book had been successfully listed.")
             }).catch(function () {
@@ -82,40 +84,25 @@
             let bookPrice = document.getElementById("bookPrice").value;
             let bookDescription = document.getElementById("bookDescription").value;
             let user = firebase.auth().currentUser;
-            let userName = user.displayName;
+            let userDisplay = user.displayName;
 
-            if (bookTitle && checkForNumbers(authorName) && checkOnlyNumbers(bookPrice) && bookDescription) {
+            if (bookTitle && checkForNumbers(authorName) && !isNaN(bookPrice) && bookDescription) {
                 /*
                 The conditions check is:
-                1. Is there something filled in for title?
+                1. Check if something is filled in for title
                 2. Check if author name is only letters; this will automatically fail if nothing is filled in
                 3. Check if the price entered is a number; this will automatically fail if nothing is filled in
+                    - isNaN: 50 = false; !isNan: 50 = true
                 4. If there is ANYTHING typed in the book description section it will pass
                 */
                 console.log("The user passed all the fields")
+                // Once all the conditions are passed we can then give all of out data to the listBook function
+                //This will take all of the data inputted and give it to the database
+                listBook(bookTitle, authorName, bookPrice, bookDescription, userDisplay);
             }else{
-                console.log("One of the fields was failed")
-                console.log(`${bookTitle} ${checkForNumbers(authorName)} ${bookPrice} ${bookDescription}`)
+                alert("At least one of the four fields have been entered")
             }
 
-            // if (bookTitle){
-            //     console.log("Book title is working")
-            // }else{
-            //     console.log("Book title failed")
-
-            // }
-            // if (checkForNumbers(authorName)){
-            //     console.log("Author name is working")
-            // }else{
-            //     console.log("Author name failed")
-
-            // }
-            // if (){
-            //     console.log("Book title is working")
-            // }else{
-            //     console.log("Book title failed")
-
-            // }
             
             
 
@@ -130,25 +117,13 @@
                 if (!isNaN(userInputArray[i])) {
                     // This is checking if the string is a number or a string.
                     // !isNaN: is Not a Number Str = true, Num = false; ! is Not a Number Str = false, Num = true
-                    console.log("That was a number xd")
                     return false
-
-                } else {
-                    console.log("That was a letter")
-                }
+                } 
             }
             // If the string passes and no character in the string is a number then return true.
             return true
         }
-        function checkOnlyNumbers(userInput) {
-            if (isNaN(userInput)) {
-                // If the string is not a number then return false
-                return false
-            } else {
-                // If user input is a number then return true
-                return true
-            }
-        }
+
 
 
 
