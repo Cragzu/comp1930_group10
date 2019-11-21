@@ -7,7 +7,8 @@ document.write(`
             </div>
     
             <div class="col-sm-4 headerColumn">
-                <h1>StudySource</h1>
+                
+                <a href="index.html" id="headerLogoText"><h1>StudySource</h1></a>
             </div>
     
             <div class="col-sm-4 headerColumn">

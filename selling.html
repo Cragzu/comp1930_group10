@@ -64,8 +64,7 @@
 
             console.log("This is the start of listing a book.")
 
-            db.collection("Books").add({
-                // Right now the document is under bookTitle, but we may want to use generated ids and just keep book title as a field.
+            db.collection("books").add({
                 Author: authorName,
                 Title: bookTitle,
                 Price: bookPrice
@@ -77,7 +76,7 @@
         }
 
         function checkTextBox() {
-            // This fun ction will check all the text boxes first before you can list a book
+            // This function will check all the text boxes first before you can list a book
             let bookTitle = document.getElementById("bookTitle").value;
             let authorName = document.getElementById("authorName").value;
             let bookPrice = document.getElementById("bookPrice").value;
