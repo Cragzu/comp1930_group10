@@ -1,5 +1,6 @@
 // Display component
 document.write(`
+<a href="bookListing.html">
     <div class="container-fluid" id="bookListingBlock">
         <div class="row">
             <div class="col-sm-2"></div>
@@ -18,4 +19,6 @@ document.write(`
             <div class="col-sm-2"></div>
         </div>
     </div>
+</a>
+
 `);
