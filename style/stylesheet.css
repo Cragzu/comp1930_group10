@@ -27,6 +27,20 @@ p {
 .bookListingImageColumn {
     position: relative;
 }
+.centerContainer {
+    display: flex;
+    justify-content: center;
+}
+.innerTextContainer {
+    display: block;
+}
+.listingButtonContainer {
+    display: flex;
+    flex-direction: row;
+}
+.bookDescription {
+    overflow-wrap: normal;
+}
 .bookImage {
     max-height: 150px;
     padding-top: 10px;
