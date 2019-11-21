@@ -51,16 +51,15 @@
 
     <script>
         let userStatus;
-        let userInfo;
-        let user = firebase.auth().currentUser;
-        let userDisplay = user.displayName
+        // let userInfo;
+        
 
         function insertUserData() {
-            // let user = firebase.auth().currentUser;
-            // console.log(user)
-            let userDisplay = userInfo.displayName;
+            let user = firebase.auth().currentUser;
+            let userDisplay = user.displayName
+            
 
-            let htmlEmail = document.getElementById("email").innerHTML;
+            let htmlEmail = document.getElementById("email");
 
             htmlEmail.innerHTML += userEmail
             console.log(userEmail)
@@ -71,13 +70,13 @@
                 if (user) {
 
                     console.log(`There is a user logged in. User: ${user.displayName}`)
-                    userInfo = user;
+                    // userInfo = user;
                     x = user.displayName
-                    e = user.Email
+                    e = user.email
                     console.log(`${x} and ${e}`)
                     db.collection("users").doc(user.displayName).set({
-                        Name: "test",
-                        Email: "tes"
+                        Name: x,
+                        Email: e
                     })
                     userStatus = true
         

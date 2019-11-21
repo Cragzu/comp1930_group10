@@ -67,7 +67,7 @@
                 Title: title,
                 Price: price,
                 Description: description,
-                Seller: seller
+                Seller: db.doc("users/" + seller)
                 
             }).then(function () {
                 console.log("A book had been successfully listed.")
