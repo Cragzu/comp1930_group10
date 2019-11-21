@@ -31,7 +31,6 @@ p {
     max-height: 150px;
     padding-top: 10px;
 }
-
 #mainHeader {
     background-color: #ACD0D4;
     min-height: 50px;
@@ -40,4 +39,9 @@ p {
 #headerLogoText{
     text-decoration: none;
     color: #000000;
+}
+#searchBar {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 50px;
 }
