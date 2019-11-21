@@ -33,20 +33,24 @@ p {
 }
 .innerTextContainer {
     display: block;
+    max-width: 700px;
 }
 .listingButtonContainer {
     display: flex;
     flex-direction: row;
 }
 .bookDescription {
-    overflow-wrap: normal;
+    word-wrap: break-spaces;
 }
 .bookImage {
     max-height: 150px;
     padding-top: 10px;
 }
 .bookImageListingPage {
-    max-height: 400px;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
 }
 #mainHeader {
     background-color: #ACD0D4;
