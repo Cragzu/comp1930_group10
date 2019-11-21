@@ -38,6 +38,7 @@ p {
 .listingButtonContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 .bookDescription {
     word-wrap: break-spaces;
