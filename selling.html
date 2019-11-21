@@ -55,21 +55,20 @@
     <script src="scripts/firebase_setup.js"></script>
 
     <script>
-
-
         let userStatus;
+        
 
-
-        function listBook(author, title, price, seller, description) {
+        function listBook(author, title, price, description, seller) {
 
             console.log("This is the start of listing a book.")
 
             db.collection("books").add({
-                Author: authorName,
-                Title: bookTitle,
-                Price: bookPrice,
-                Seller: seller,
-                Description: description
+                Author: author,
+                Title: title,
+                Price: price,
+                Description: description,
+                Seller: seller
+                
             }).then(function () {
                 console.log("A book had been successfully listed.")
             }).catch(function () {
@@ -98,7 +97,7 @@
                 console.log("The user passed all the fields")
                 // Once all the conditions are passed we can then give all of out data to the listBook function
                 //This will take all of the data inputted and give it to the database
-                listBook(bookTitle, authorName, bookPrice, bookDescription, userDisplay);
+                listBook(authorName, bookTitle, bookPrice, bookDescription, userDisplay);
             }else{
                 alert("At least one of the four fields have been entered")
             }
@@ -129,8 +128,7 @@
 
 
 
-        document.getElementById("listButton").onclick = checkTextBox;
-        // When you click the button it will check the fields before you can list the book.
+        
 
 
         function init() {
@@ -145,9 +143,11 @@
                     // }, 2000)
                 } else {
                     console.log(`No one is logged in`)
-                    return false
+                    userStatus = false
                 }
             })
+            document.getElementById("listButton").onclick = checkTextBox;
+        // When you click the button it will check the fields before you can list the book.
 
         }
 

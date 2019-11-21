@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>StudySource | User Account</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style/stylesheet.css">
 
-        <link rel="import" href="components/componentMainHeader.html" id="importHeader">
+<head>
+    <title>StudySource | User Account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/stylesheet.css">
 
-    </head>
-    <body>
+    <link rel="import" href="components/componentMainHeader.html" id="importHeader">
+
+</head>
+
+<body>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -19,22 +21,88 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pX
     B1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
     <!--Our Scripts-->
     <script src="scripts/firebase_setup.js"></script>
     <script src="scripts/displayHeader.js"></script>
-        <div> 
+    <div>
         <h1>Profile</h1>
-        </div>
-        
-        <hr>
+    </div>
 
-    <input type="button" value="Sell Books">
+    <hr>
+
+    <input type="button" value="Sell Books" id="sellBooksButton">
     <input type="button" value="Settings">
 
-    <p>Email: </p>
+    <p id="email">Email: </p>
     <p>Phone: </p>
     <input type="button" value="Purchased Books">
     <input type="button" value="Sold Books">
 
-    </body>
+
+
+
+
+
+
+    <script>
+        let userStatus;
+        let userInfo;
+        let user = firebase.auth().currentUser;
+        let userDisplay = user.displayName
+
+        function insertUserData() {
+            // let user = firebase.auth().currentUser;
+            // console.log(user)
+            let userDisplay = userInfo.displayName;
+
+            let htmlEmail = document.getElementById("email").innerHTML;
+
+            htmlEmail.innerHTML += userEmail
+            console.log(userEmail)
+        }
+
+        function init() {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+
+                    console.log(`There is a user logged in. User: ${user.displayName}`)
+                    userInfo = user;
+                    x = user.displayName
+                    e = user.Email
+                    console.log(`${x} and ${e}`)
+                    db.collection("users").doc(user.displayName).set({
+                        Name: "test",
+                        Email: "tes"
+                    })
+                    userStatus = true
+                    // setInterval(function () {
+                    //     console.log(`There is a user logged in. User: ${user}`)
+                    //     console.log(user.displayName)
+                    // }, 2000)
+                } else {
+                    console.log(`No one is logged in`)
+                    userStatus = false
+                }
+            })
+
+            document.getElementById("sellBooksButton").onclick = userSellsBooks;
+
+        }
+        init()
+
+
+        function userSellsBooks() {
+            document.location.href = "selling.html";
+        }
+
+
+    </script>
+
+</body>
+
 </html>
