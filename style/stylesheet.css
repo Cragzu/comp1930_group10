@@ -11,6 +11,15 @@ h1 {
 p {
     font-size: 16px;
 }
+a {
+    text-decoration: none;
+    color: #000000;
+}
+a:hover {
+    text-decoration: none;
+    color: #000000;
+
+}
 .row1 {
     width: 90%;
     margin: auto;
@@ -60,10 +69,6 @@ p {
     min-height: 50px;
     margin-bottom: 25px;
 }
-#headerLogoText{
-    text-decoration: none;
-    color: #000000;
-}
 #searchBar {
     display: flex;
     flex-direction: row;
@@ -73,12 +78,9 @@ p {
     text-decoration: none;
     color: #000000;
 }
-<<<<<<< HEAD
-#leftcol{
+#leftcol {
     margin-top: 15px;
 }
-=======
 #bookSellingForm {
     max-width: 700px;
 }
->>>>>>> ae07249478c52c2c89845c76a1e4b3d0aea77e5a

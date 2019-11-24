@@ -47,26 +47,3 @@ book.get().then(function(querySnapshot) {
         console.log('Title: ', docTitle, ' | Desc: ', docDesc);
     });
 });
-
-
-
-
-
-
-
-// Get data from firestore to display
-// function displayBlocksFromDatabase() {
-//     book.onSnapshot(function (doc) {
-//         if (doc && doc.exists) {
-//             const myData = doc.data();
-//             console.log(myData);
-//
-//             displayListingBlock('lala', 'asdahsdasf');
-//         }
-//     });
-//
-//
-// }
-// displayListingBlock('a', '3')
-// displayBlocksFromDatabase();
-
