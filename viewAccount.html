@@ -65,29 +65,38 @@
     <input class="btn inputbutton" type="button" value="Purchased Books">
     <input class="btn inputbutton" type="button" value="Sold Books">
 
+<<<<<<< HEAD
     </div>
+=======
+    <hr>
+    <a href="selling.html">
+        <input type="button" value="Sell Books" id="sellBooksButton">
+    </a>
+    <input type="button" value="Settings">
 
-
-
-
-
-
+    <p id="email">Email: </p>
+    <p>Phone: </p>
+    <input type="button" value="Purchased Books">
+    <input type="button" value="Sold Books">
+>>>>>>> ae07249478c52c2c89845c76a1e4b3d0aea77e5a
 
     <script>
         let userStatus;
+<<<<<<< HEAD
         let userInfo;
         let user = firebase.auth().currentUser;
         let userDisplay = user.displayName;
+=======
+>>>>>>> ae07249478c52c2c89845c76a1e4b3d0aea77e5a
 
         function insertUserData() {
-            // let user = firebase.auth().currentUser;
-            // console.log(user)
-            let userDisplay = userInfo.displayName;
+            let user = firebase.auth().currentUser;
+            let userDisplay = user.displayName;
 
-            let htmlEmail = document.getElementById("email").innerHTML;
+            let htmlEmail = document.getElementById("email");
 
-            htmlEmail.innerHTML += userEmail
-            console.log(userEmail)
+            htmlEmail.innerHTML += userEmail;
+            console.log(userEmail);
         }
 
         function init() {
@@ -95,13 +104,13 @@
                 if (user) {
 
                     console.log(`There is a user logged in. User: ${user.displayName}`)
-                    userInfo = user;
+                    // userInfo = user;
                     x = user.displayName
-                    e = user.Email
+                    e = user.email
                     console.log(`${x} and ${e}`)
                     db.collection("users").doc(user.displayName).set({
-                        Name: "test",
-                        Email: "tes"
+                        Name: x,
+                        Email: e
                     })
                     userStatus = true
         

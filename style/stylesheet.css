@@ -38,6 +38,10 @@ p {
     flex-direction: row;
     justify-content: space-around;
 }
+.inlineContainer {
+    display: flex;
+    flex-direction: row;
+}
 .bookDescription {
     word-wrap: break-spaces;
 }
@@ -69,6 +73,12 @@ p {
     text-decoration: none;
     color: #000000;
 }
+<<<<<<< HEAD
 #leftcol{
     margin-top: 15px;
 }
+=======
+#bookSellingForm {
+    max-width: 700px;
+}
+>>>>>>> ae07249478c52c2c89845c76a1e4b3d0aea77e5a

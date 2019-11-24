@@ -12,7 +12,7 @@
     <h1> Selling </h1>
     <h4> Selling the textbooks </h4>
 
-    <div>
+    <div id="bookSellingForm">
         <form>
             <div>
                 <label for="bookTitle">
@@ -37,15 +37,13 @@
                 <label for="bookDescription">
                     Description:
                 </label>
-                <input type="text" id="bookDescription" name="book_description"
-                    placeholder="e.g. 7/10 condition. Only used for 1 term.">
-                <!-- This needs to be changed CSS wise to allow scrolling and a bigger text box -->
+                  <textarea id="bookDescription" class="form-control md-textarea" length="50" rows="5"></textarea>
+
             </div>
             <div>
                 <input type="button" id="listButton" value="Post Listing">
             </div>
         </form>
-
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
@@ -67,7 +65,7 @@
                 Title: title,
                 Price: price,
                 Description: description,
-                Seller: seller
+                Seller: db.doc("users/" + seller)
                 
             }).then(function () {
                 console.log("A book had been successfully listed.")
