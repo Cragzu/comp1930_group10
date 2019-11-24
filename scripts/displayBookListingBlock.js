@@ -1,9 +1,14 @@
 // Constants
 const book = db.collection("books");
 
-// Display component
-function displayListingBlock(title, description) {
-    document.write(`
+
+function blockComponent (title, desc) {
+    this.title = title;
+    this.description = desc;
+    this.titleText = document.createElement('h1');
+    this.descText = document.createElement('p');
+    this.displayListingBlock = function() {
+        document.write(`
         <a href="bookListing.html">
             <div class="container-fluid" id="bookListingBlock">
                 <div class="row">
@@ -14,9 +19,8 @@ function displayListingBlock(title, description) {
                             <img class="bookImage"
                                  src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
                         </div>
-                        <div class="col-sm-8">
-                            <h1 id="blockTitle">Book Title</h1>
-                            <p id="blockDesc">This is placeholder text for the short description of the book.</p>
+                        <div class="col-sm-8" id="bookInfoContainer"> <!--Book title and description will go here-->
+
                         </div>
             
                     </div>
@@ -25,23 +29,22 @@ function displayListingBlock(title, description) {
             </div>
         </a>
     `);
-   document.getElementById("blockTitle").innerHTML = title;
-   document.getElementById("blockDesc").innerHTML = description;
+        this.titleText.appendChild(document.createTextNode(title));
+        this.descText.appendChild(document.createTextNode(desc));
+        document.getElementById('bookInfoContainer').appendChild(this.titleText);
+        document.getElementById('bookInfoContainer').appendChild(this.descText);
+    }
 
 }
 
-
-
 book.get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        let title = doc.data().Title;
-        let author = doc.data().Author;
-        let desc = doc.data().Description;
-        // console.log(doc.id, " => ", doc.data());
-        console.log('Title: ', title, ' | Author: ', author);
-        document.write(title);
-        displayListingBlock(doc.data().Title, doc.data().Description);
+        let docTitle = doc.data().Title;
+        let docDesc = doc.data().Description;
+        let comp = new blockComponent(docTitle, docDesc);
+        comp.displayListingBlock();
+
+        console.log('Title: ', docTitle, ' | Desc: ', docDesc);
     });
 });
 
