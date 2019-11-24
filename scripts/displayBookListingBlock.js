@@ -25,8 +25,8 @@ function displayListingBlock(title, description, titleID, descID) {
             </div>
         </a>
     `);
-   document.getElementById(titleID).innerHTML = title;
-   document.getElementById(descID).innerHTML = description;
+   document.getElementById("titleID").innerHTML = title;
+   document.getElementById("descID").innerHTML = description;
 
 }
 
