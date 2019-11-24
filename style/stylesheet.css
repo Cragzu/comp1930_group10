@@ -40,6 +40,10 @@ p {
     flex-direction: row;
     justify-content: space-around;
 }
+.inlineContainer {
+    display: flex;
+    flex-direction: row;
+}
 .bookDescription {
     word-wrap: break-spaces;
 }
