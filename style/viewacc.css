@@ -1,0 +1,9 @@
+hr{
+    border: solid 1px black;
+}
+#emailbox{
+    border: solid 1px #417285;
+}
+.inputbutton{
+    background-color: #B56E57;
+}

@@ -2,8 +2,6 @@ body {
     background-color: #F2E3D8;
 }
 button {
-    min-height: 50px;
-    min-width: 50px;
     font-size: 20px;
 }
 h1 {
@@ -70,4 +68,7 @@ p {
 #bookListingBlock {
     text-decoration: none;
     color: #000000;
+}
+#leftcol{
+    margin-top: 15px;
 }

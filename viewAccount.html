@@ -5,6 +5,11 @@
     <title>StudySource | User Account</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/stylesheet.css">
+    <link rel="stylesheet" href="style/viewacc.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <link rel="import" href="components/componentMainHeader.html" id="importHeader">
 
@@ -29,19 +34,38 @@
     <!--Our Scripts-->
     <script src="scripts/firebase_setup.js"></script>
     <script src="scripts/displayHeader.js"></script>
-    <div>
-        <h1>Profile</h1>
+    
+    <div class="container">
+        <div>
+            <h1>Profile</h1>
+        </div>
+        <hr>
+    <div class="row">
+        <div class="col-sm-6">
+            <input class="btn inputbutton" type="button" value="Sell Books" id="sellBooksButton">
+        </div>
+        <div class="col-sm-6">
+            <input class="btn inputbutton" type="button" value="Settings">
+        </div>
     </div>
+        
+        
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <h4>Email</h4>
+            <div class="form-control" id="emailbox">
+            </div> 
+        </div>
+        <div class="col-sm-6 form-group ">
+            <h4>Phone #</h4>
+            <div class="form-control" id="emailbox">
+            </div> 
+        </div>
+    </div>
+    <input class="btn inputbutton" type="button" value="Purchased Books">
+    <input class="btn inputbutton" type="button" value="Sold Books">
 
-    <hr>
-
-    <input type="button" value="Sell Books" id="sellBooksButton">
-    <input type="button" value="Settings">
-
-    <p id="email">Email: </p>
-    <p>Phone: </p>
-    <input type="button" value="Purchased Books">
-    <input type="button" value="Sold Books">
+    </div>
 
 
 
@@ -53,7 +77,7 @@
         let userStatus;
         let userInfo;
         let user = firebase.auth().currentUser;
-        let userDisplay = user.displayName
+        let userDisplay = user.displayName;
 
         function insertUserData() {
             // let user = firebase.auth().currentUser;

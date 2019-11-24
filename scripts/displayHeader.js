@@ -3,7 +3,7 @@ document.write(`
     <div class="container-fluid" id="mainHeader">
         <div class="row">
         
-            <div class="col-sm-4 headerColumn">
+            <div class="col-sm-4 headerColumn text-center" id="leftcol">
                 <a href="login.html"><button type="button" class="btn btn-primary">Login/Signup</button></a>
             </div>
     
@@ -12,21 +12,22 @@ document.write(`
                 <a href="index.html" id="headerLogoText"><h1>StudySource</h1></a>
             </div>
     
-            <div class="col-sm-4 headerColumn">
+            <div class="col-sm-4 headerColumn text-center">
                 <div class="collapse" id="navbarToggleExternalContent">
                     <div class="p-4">
-                        <h5 class="text-white h4">Collapsed content</h5>
-                        <span class="text-muted">Toggleable via the navbar brand.</span>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item border border-dark">Home</a>
+                            <a href="#" class="list-group-item border border-dark">Search</a>
+                            <a href="#" class="list-group-item border border-dark">About us</a>
+                        </div>
                     </div>
                 </div>
                 <nav class="navbar">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarToggleExternalContent"
-                            aria-controls="navbarToggleExternalContent" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <span class="glyphicon glyphicon-menu-hamburger btn btn-primary" id="hamburgerMenu"
-                              aria-hidden="true"></span>
-                    </button>
+                    <span class="glyphicon glyphicon-menu-hamburger btn btn-primary navbar-toggler" id="hamburgerMenu"
+                    data-toggle="collapse"
+                    data-target="#navbarToggleExternalContent"
+                    aria-controls="navbarToggleExternalContent" aria-expanded="false"
+                    aria-label="Toggle navigation"></span>
                 </nav>
             </div>
             
