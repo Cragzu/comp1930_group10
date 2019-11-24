@@ -2,7 +2,7 @@
 const book = db.collection("books");
 
 // Display component
-function displayListingBlock(title, description, titleID, descID) {
+function displayListingBlock(title, description) {
     document.write(`
         <a href="bookListing.html">
             <div class="container-fluid" id="bookListingBlock">
@@ -15,8 +15,8 @@ function displayListingBlock(title, description, titleID, descID) {
                                  src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
                         </div>
                         <div class="col-sm-8">
-                            <h1 id=titleID>Book Title</h1>
-                            <p id=descID>This is placeholder text for the short description of the book.</p>
+                            <h1 id="blockTitle">Book Title</h1>
+                            <p id="blockDesc">This is placeholder text for the short description of the book.</p>
                         </div>
             
                     </div>
@@ -25,8 +25,8 @@ function displayListingBlock(title, description, titleID, descID) {
             </div>
         </a>
     `);
-   document.getElementById(titleID).innerHTML = title;
-   document.getElementById(descID).innerHTML = description;
+   document.getElementById("blockTitle").innerHTML = title;
+   document.getElementById("blockDesc").innerHTML = description;
 
 }
 
@@ -40,7 +40,8 @@ book.get().then(function(querySnapshot) {
         let desc = doc.data().Description;
         // console.log(doc.id, " => ", doc.data());
         console.log('Title: ', title, ' | Author: ', author);
-        displayListingBlock(title, desc, title, desc);
+        document.write(title);
+        displayListingBlock(doc.data().Title, doc.data().Description);
     });
 });
 
