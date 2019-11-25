@@ -1,0 +1,60 @@
+<!--Neda's solution to dynamic block display; is this preferred over the way C did it?-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/stylesheet.css">
+
+</head>
+
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+  <script src="scripts/firebase_setup.js"></script>
+
+
+  <div class="container" id="services">
+    <div class="row" id="bookInfoContainer" >
+
+    </div><!-- row -->
+  </div><!-- container -->
+
+  <script>
+    const book = db.collection("books");
+
+    book.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let docTitle = doc.data().Title;
+        let docDesc = doc.data().Description;
+        console.log('Title: ', docTitle, ' | Desc: ', docDesc);
+        var sec = document.createElement('section');
+        sec.className = "col-sm-6 col-md-4 col-lg-3 col-xl-2";  
+        var img = document.createElement('img');
+        img.className = "bookImage";
+        img.src = "https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"
+        sec.appendChild(img)       
+        var head1 = document.createElement('h1');
+        var para = document.createElement('p');
+
+        head1.innerHTML = docTitle;
+        para.innerHTML = docDesc;
+        document.getElementById('bookInfoContainer').appendChild(sec)
+       sec.appendChild(head1);
+       sec.appendChild(para);
+      });
+    })
+
+  </script>
+</body>
+
+</html>

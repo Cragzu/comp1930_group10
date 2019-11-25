@@ -1,7 +1,6 @@
 // Constants
 const book = db.collection("books");
 
-
 function blockComponent (title, desc) {
     this.title = title;
     this.description = desc;
@@ -29,14 +28,17 @@ function blockComponent (title, desc) {
             </div>
         </a>
     `);
+        // Create text pieces
         this.titleText.appendChild(document.createTextNode(title));
         this.descText.appendChild(document.createTextNode(desc));
+
+        // Add them into the container component
         document.getElementById('bookInfoContainer').appendChild(this.titleText);
         document.getElementById('bookInfoContainer').appendChild(this.descText);
 
+        // Remove id from container so we can set up the next element
         document.getElementById('bookInfoContainer').removeAttribute('id');
     }
-
 }
 
 book.get().then(function(querySnapshot) {
@@ -44,7 +46,6 @@ book.get().then(function(querySnapshot) {
         let docTitle = doc.data().Title;
         let docDesc = doc.data().Description;
         let comp = new blockComponent(docTitle, docDesc);
-        console.log(comp);
         comp.displayListingBlock();
 
     });
