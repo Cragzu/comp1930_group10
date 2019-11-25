@@ -8,7 +8,7 @@ function blockComponent (title, desc) {
     this.titleText = document.createElement('h1');
     this.descText = document.createElement('p');
     this.displayListingBlock = function() {
-        document.write(`
+        document.body.innerHTML += (`
         <a href="bookListing.html">
             <div class="container-fluid" id="bookListingBlock">
                 <div class="row">
@@ -33,6 +33,8 @@ function blockComponent (title, desc) {
         this.descText.appendChild(document.createTextNode(desc));
         document.getElementById('bookInfoContainer').appendChild(this.titleText);
         document.getElementById('bookInfoContainer').appendChild(this.descText);
+
+        document.getElementById('bookInfoContainer').removeAttribute('id');
     }
 
 }
@@ -42,8 +44,8 @@ book.get().then(function(querySnapshot) {
         let docTitle = doc.data().Title;
         let docDesc = doc.data().Description;
         let comp = new blockComponent(docTitle, docDesc);
+        console.log(comp);
         comp.displayListingBlock();
 
-        console.log('Title: ', docTitle, ' | Desc: ', docDesc);
     });
 });
