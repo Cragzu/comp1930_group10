@@ -37,7 +37,7 @@
                 <label for="bookDescription">
                     Description:
                 </label>
-                  <textarea id="bookDescription" class="form-control md-textarea" length="50" rows="5"></textarea>
+                  <textarea id="bookDescription" name="book_desc" class="form-control md-textarea" length="50" rows="5"></textarea>
 
             </div>
             <div>
@@ -54,11 +54,10 @@
 
     <script>
         let userStatus;
-        
 
         function listBook(author, title, price, description, seller) {
 
-            console.log("This is the start of listing a book.")
+            console.log("This is the start of listing a book.");
 
             db.collection("books").add({
                 Author: author,
@@ -82,8 +81,9 @@
             let bookDescription = document.getElementById("bookDescription").value;
             let user = firebase.auth().currentUser;
             let userDisplay = user.displayName;
+            console.log('Desc is:', bookDescription);
 
-            if (bookTitle && checkForNumbers(authorName) && !isNaN(bookPrice) && bookDescription) {
+            if (bookTitle && !(/\d/.test(authorName)) && !isNaN(bookPrice) && bookDescription) {
                 /*
                 The conditions check is:
                 1. Check if something is filled in for title
@@ -92,55 +92,23 @@
                     - isNaN: 50 = false; !isNan: 50 = true
                 4. If there is ANYTHING typed in the book description section it will pass
                 */
-                console.log("The user passed all the fields")
+                console.log("The user passed all the fields");
                 // Once all the conditions are passed we can then give all of out data to the listBook function
                 //This will take all of the data inputted and give it to the database
                 listBook(authorName, bookTitle, bookPrice, bookDescription, userDisplay);
-            }else{
-                alert("At least one of the four fields have been entered")
             }
-
-            
-            
-
-
-        }
-
-        function checkForNumbers(userInput) {
-            // This function will take a string and put it in an array. That array will be tested to see if any of the elements in it are a number. If there is a number then return false, else return True at the end.
-            let userInputArray = userInput.split("")
-            console.log(userInputArray)
-            for (let i = 0; i < userInputArray.length; i++) {
-                if (!isNaN(userInputArray[i])) {
-                    // This is checking if the string is a number or a string.
-                    // !isNaN: is Not a Number Str = true, Num = false; ! is Not a Number Str = false, Num = true
-                    return false
-                } 
+            else {
+                alert("At least one of the four fields has not been entered");
             }
-            // If the string passes and no character in the string is a number then return true.
-            return true
         }
-
-
-
-
-
-
-        
-
 
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-
-                    console.log(`There is a user logged in. User: ${user}`)
+                    console.log(`There is a user logged in. User: ${user}`);
                     userStatus = true
-                    // setInterval(function () {
-                    //     console.log(`There is a user logged in. User: ${user}`)
-                    //     console.log(user.displayName)
-                    // }, 2000)
                 } else {
-                    console.log(`No one is logged in`)
+                    console.log(`No one is logged in`);
                     userStatus = false
                 }
             })
@@ -148,7 +116,6 @@
         // When you click the button it will check the fields before you can list the book.
 
         }
-
 
         init();
 
