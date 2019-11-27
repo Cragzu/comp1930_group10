@@ -31,6 +31,9 @@ a:hover {
     background-color: #B56E57;
     min-height: 200px;
 }
+.clickable {
+    cursor: pointer;
+}
 .bookListingImageColumn {
     position: relative;
 }

@@ -17,7 +17,7 @@ function blockComponent(title, desc, docId, i) {
                 <div class="row">
                     <div class="col-sm-2"></div>
                     
-                    <div class="col-sm-8" id="${this.i}">
+                    <div class="col-sm-8 clickable" id="${this.i}">
                    
                         <div class="col-sm-4">
                             <img class="bookImage"
