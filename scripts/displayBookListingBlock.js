@@ -1,9 +1,11 @@
 // Constants
 const book = db.collection("books");
 
-function blockComponent (title, desc) {
+function blockComponent (title, desc, docId) {
+    // This object constructor will take the book title, book description, and document name, which is docId
     this.title = title;
     this.description = desc;
+    this.docId = docId;
     this.titleText = document.createElement('h1');
     this.descText = document.createElement('p');
     this.displayListingBlock = function() {
@@ -26,6 +28,7 @@ function blockComponent (title, desc) {
                 </div>
             </div>
     `);
+
         // Create text pieces
         this.titleText.appendChild(document.createTextNode(title));
         this.descText.appendChild(document.createTextNode(desc));
@@ -36,14 +39,24 @@ function blockComponent (title, desc) {
 
         // Remove id from container so we can set up the next element
         document.getElementById('bookInfoContainer').removeAttribute('id');
+
+        
+
+
+
+
     }
 }
 
 book.get().then(function(querySnapshot) {
+
     querySnapshot.forEach(function(doc) {
         let docTitle = doc.data().Title;
         let docDesc = doc.data().Description;
-        let comp = new blockComponent(docTitle, docDesc);
+        let docName = doc.id;
+        console.log(docName)
+
+        let comp = new blockComponent(docTitle, docDesc, docName);
         comp.displayListingBlock();
 
     });
