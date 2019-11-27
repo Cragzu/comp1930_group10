@@ -1,11 +1,14 @@
 // Constants
 const book = db.collection("books");
 
-function blockComponent (title, desc, docId) {
+function blockComponent (title, desc, docId, i) {
     // This object constructor will take the book title, book description, and document name, which is docId
     this.title = title;
     this.description = desc;
     this.docId = docId;
+    // Keep the document ID
+    this.i = i;
+    // THis is an index to keep track of
     this.titleText = document.createElement('h1');
     this.descText = document.createElement('p');
     this.displayListingBlock = function() {
@@ -15,7 +18,7 @@ function blockComponent (title, desc, docId) {
                     <div class="col-sm-2"></div>
                     
                     <div class="col-sm-8">
-                    <a href="bookListing.html">
+                    <a href="bookListing.html" id="${this.i}">
                         <div class="col-sm-4">
                             <img class="bookImage"
                                  src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
@@ -41,6 +44,22 @@ function blockComponent (title, desc, docId) {
         document.getElementById('bookInfoContainer').removeAttribute('id');
 
         
+        console.log(docId)
+        document.getElementById(`${this.i}`).addEventListener("click",function (){
+            // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
+
+            // This is currently not working >:(
+
+
+            // if (localStorage.getItem("docId") === docId){
+            //     console.log("This ID has already been stored.")
+            // }else{
+            //     localStorage.setItem("docId", docId)
+            // }
+            localStorage.setItem("docId", this.docId)
+        })
+
+        
 
 
 
@@ -48,17 +67,24 @@ function blockComponent (title, desc, docId) {
     }
 }
 
-book.get().then(function(querySnapshot) {
 
+book.get().then(function(querySnapshot) {
+    let index = 0;
     querySnapshot.forEach(function(doc) {
         let docTitle = doc.data().Title;
         let docDesc = doc.data().Description;
         let docName = doc.id;
-        console.log(docName)
-
-        let comp = new blockComponent(docTitle, docDesc, docName);
+        // docName will keep the ID of each listing
+        // console.log(docName)
+        localStorage.setItem("test", "test is working")
+        // test is to test localStorage is working
+        localStorage.setItem("docId", "If you see this the test failed.")
+        // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
+        let comp = new blockComponent(docTitle, docDesc, docName, index);
         comp.displayListingBlock();
-
+        index += 1;
+        console.log(comp)
     });
+    
 });
 encod

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>StudySource | Book Listing</title>
     <meta charset="UTF-8">
@@ -14,43 +15,84 @@
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+
+
+
+    <script src="scripts/firebase_setup.js"></script>
 </head>
+
 <body>
-<script src="scripts/displayHeader.js"></script> <!--Header should always be displayed first-->
+    <script src="scripts/displayHeader.js"></script>
+    <!--Header should always be displayed first-->
 
 
 
-<div class="centerContainer">
-    <div class="innerTextContainer">
+    <div class="centerContainer">
+        <div class="innerTextContainer">
 
-        <div class="inlineContainer">
-            <h2 id="bookTitle">Biology 101</h2> <!-- Brian - the firebase book info can display here -->
-            <h2>&nbsp; - &nbsp;</h2>
-            <h2 id="bookAuthor">Dr. Brown, PhD</h2>
+            <div class="inlineContainer">
+                <h2 id="bookTitle">Biology 101</h2> <!-- Brian - the firebase book info can display here -->
+                <h2>&nbsp; - &nbsp;</h2>
+                <h2 id="bookAuthor">Dr. Brown, PhD</h2>
+            </div>
+
+
+            <img class="bookImageListingPage"
+                src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg" />
+
+            <h3>Seller: student95 in Ottawa, ON</h3>
+
+            <p id="bookDescription">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut ullamcorper augue. Vestibulum
+                vitae
+                lectus dignissim, posuere nulla non, tincidunt ex. Mauris consectetur ultricies ligula, egestas lobortis
+                enim aliquet ac. Vestibulum aliquet sapien et enim pellentesque ultricies sed quis mi.
+            </p>
+
+            <div class="listingButtonContainer">
+                <button type="button" class="btn btn-primary">View my Cart</button>
+                <button type="button" class="btn btn-primary">Add to Cart</button>
+            </div>
+
         </div>
-
-
-        <img class="bookImageListingPage"
-             src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
-
-        <h3>Seller: student95 in Ottawa, ON</h3>
-
-        <p id="bookDescription">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut ullamcorper augue. Vestibulum vitae
-            lectus dignissim, posuere nulla non, tincidunt ex. Mauris consectetur ultricies ligula, egestas lobortis
-            enim aliquet ac. Vestibulum aliquet sapien et enim pellentesque ultricies sed quis mi.
-        </p>
-
-        <div class="listingButtonContainer">
-            <button type="button" class="btn btn-primary">View my Cart</button>
-            <button type="button" class="btn btn-primary">Add to Cart</button>
-        </div>
-
     </div>
-</div>
+
+    <script>
+        function getCurrentData() {
+            let docId = localStorage.getItem("docId")
+            console.log(docId)
+            // Print out and see if we actually got a proper document ID or not. Warning will be shown if docId fails to get overwritten
+
+            let bookTitle = document.getElementById("bookTitle");
+            let bookAuthor = document.getElementById("bookAuthor");
+            let bookDesc = document.getElementById("bookDescription");
+
+            db.collection("books").doc(`${docId}`).onSnapshot(function (doc) {
+                // Try to access the data if the docId change is working.
+
+                // This currently doesn't work because we can't access the docId.
+
+                console.log(doc.data())
+                bookTitle.innerHTML = doc.data().Title;
+                console.log("You have passed. You have accessed the document information.")
+                // This console log should print if we don't have any errors.
+            })
 
 
+            
+        }
+
+        function init() {
+            // Run the functions in this script.
+            getCurrentData()
+        }
+
+        init();
+    </script>
 
 </body>
+
 </html>
