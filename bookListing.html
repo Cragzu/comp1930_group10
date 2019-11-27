@@ -34,22 +34,19 @@
         <div class="innerTextContainer">
 
             <div class="inlineContainer">
-                <h2 id="bookTitle">Biology 101</h2> <!-- Brian - the firebase book info can display here -->
+                <h2 id="bookTitle">[Book Title]</h2> <!-- Brian - the firebase book info can display here -->
                 <h2>&nbsp; - &nbsp;</h2>
-                <h2 id="bookAuthor">Dr. Brown, PhD</h2>
+                <h2 id="bookAuthor">[Author Name]</h2>
             </div>
 
 
             <img class="bookImageListingPage"
                 src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg" />
 
-            <h3>Seller: student95 in Ottawa, ON</h3>
+            <h3 id="seller">Seller: [Seller Name]</h3>
 
             <p id="bookDescription">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut ullamcorper augue. Vestibulum
-                vitae
-                lectus dignissim, posuere nulla non, tincidunt ex. Mauris consectetur ultricies ligula, egestas lobortis
-                enim aliquet ac. Vestibulum aliquet sapien et enim pellentesque ultricies sed quis mi.
+                [Description of the book]
             </p>
 
             <div class="listingButtonContainer">
@@ -69,6 +66,7 @@
             let bookTitle = document.getElementById("bookTitle");
             let bookAuthor = document.getElementById("bookAuthor");
             let bookDesc = document.getElementById("bookDescription");
+            let bookSeller = document.getElementById("seller");
 
             db.collection("books").doc(`${docId}`).onSnapshot(function (doc) {
                 // Try to access the data if the docId change is working.
@@ -77,6 +75,10 @@
 
                 console.log(doc.data())
                 bookTitle.innerHTML = doc.data().Title;
+                bookAuthor.innerHTML = `by ${doc.data().Author}`;
+                bookDesc.innerHTML = `Description \
+                 ${doc.data().Description}`;
+                bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
                 console.log("You have passed. You have accessed the document information.")
                 // This console log should print if we don't have any errors.
             })
