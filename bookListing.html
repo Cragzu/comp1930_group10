@@ -35,6 +35,7 @@
 
             <img class="bookImageListingPage"
                 src="images/bookPlaceholder.jpg" />
+            <h1 id="price">Price: $placeholder</h1>
 
             <h3 id="seller">Seller: [Seller Name]</h3>
 
@@ -64,17 +65,19 @@
             let bookAuthor = document.getElementById("bookAuthor");
             let bookDesc = document.getElementById("bookDescription");
             let bookSeller = document.getElementById("seller");
+            let bookPrice = document.getElementById("price");
 
             db.collection("books").doc(`${docId}`).onSnapshot(function (doc) {
                 // Try to access the data if the docId change is working.
 
                 // This currently doesn't work because we can't access the docId.
 
-                console.log(doc.data())
+                console.log(doc.data());
                 bookTitle.innerHTML = doc.data().Title;
                 bookAuthor.innerHTML = `&nbsp;by ${doc.data().Author}`;
                 bookDesc.innerHTML = `Description: ${doc.data().Description}`;
                 bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
+                bookPrice.innerHTML = `Price: &#36;${doc.data().Price}`;
                 console.log("You have passed. You have accessed the document information.")
                 // This console log should print if we don't have any errors.
             })

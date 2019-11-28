@@ -43,14 +43,10 @@ function blockComponent(title, desc, docId, i) {
         // Remove id from container so we can set up the next element
         document.getElementById('bookInfoContainer').removeAttribute('id');
 
-
-
-
-
     }
 }
 function addOnClick() {
-    for (let j = 0; j < 7; j++) {
+    for (let j = 0; j < 3; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
