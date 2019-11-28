@@ -68,32 +68,19 @@
     <input class="btn inputbutton" type="button" value="Sold Books">
 
     </div>
-    <hr>
-    <a href="selling.html">
-        <input type="button" value="Sell Books" id="sellBooksButton">
-    </a>
-    <input type="button" value="Settings">
-
-    <p id="email">Email: </p>
-    <p>Phone: </p>
-    <input type="button" value="Purchased Books">
-    <input type="button" value="Sold Books">
-
     <script>
         let userStatus;
         let userInfo;
-        let user = firebase.auth().currentUser;
-        let userDisplay = user.displayName;
 
-        function insertUserData() {
-            let user = firebase.auth().currentUser;
-            let userDisplay = user.displayName;
-
-            let htmlEmail = document.getElementById("email");
-
-            htmlEmail.innerHTML += userEmail;
-            console.log(userEmail);
-        }
+        // function insertUserData() {
+        //     let user = firebase.auth().currentUser;
+        //     let userDisplay = user.displayName;
+        //
+        //     let htmlEmail = document.getElementById("email");
+        //
+        //     htmlEmail.innerHTML += userEmail;
+        //     console.log(userEmail);
+        // }
 
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
