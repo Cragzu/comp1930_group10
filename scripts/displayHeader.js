@@ -8,7 +8,6 @@ document.write(`
             </div>
     
             <div class="col-sm-4 headerColumn">
-                
                 <a href="index.html" id="headerLogoText"><h1>StudySource</h1></a>
             </div>
     
@@ -16,9 +15,8 @@ document.write(`
                 <div class="collapse" id="navbarToggleExternalContent">
                     <div class="p-4">
                         <div class="list-group">
-                            <a href="#" class="list-group-item border border-dark">Home</a>
-                            <a href="#" class="list-group-item border border-dark">Search</a>
-                            <a href="#" class="list-group-item border border-dark">About us</a>
+                            <a href="underConstruction.html" class="list-group-item border border-dark">Search</a>
+                            <a href="underConstruction.html" class="list-group-item border border-dark">About us</a>
                         </div>
                     </div>
                 </div>
