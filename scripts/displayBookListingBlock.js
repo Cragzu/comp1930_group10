@@ -46,12 +46,9 @@ function blockComponent(title, desc, docId, i) {
     }
 }
 function addOnClick() {
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 4; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
-
-            // This is currently not working >:(
-
 
             if (localStorage.getItem("docId") === idList[j]) {
                 // If the stored id is already matching the id of the div that was clicked on the you don't need to store the local info again
@@ -62,8 +59,6 @@ function addOnClick() {
                 localStorage.setItem("docId", idList[j])
                 document.location.href = "bookListing.html"
             }
-
-            
         })
     }
 }
@@ -93,4 +88,3 @@ book.get().then(function (querySnapshot) {
     });
     addOnClick();
 });
-encod
