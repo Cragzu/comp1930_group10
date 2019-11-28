@@ -58,6 +58,10 @@ p {
     max-width: 100%;
     max-height: 100%;
 }
+.clickable {
+    cursor: pointer;
+    margin-top: 20px;
+}
 #mainHeader {
     background-color: #ACD0D4;
     min-height: 50px;
