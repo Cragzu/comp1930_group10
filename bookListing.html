@@ -76,7 +76,7 @@
                 console.log(doc.data())
                 bookTitle.innerHTML = doc.data().Title;
                 bookAuthor.innerHTML = `by ${doc.data().Author}`;
-                bookDesc.innerHTML = `Description ${doc.data().Description}`;
+                bookDesc.innerHTML = `Description: ${doc.data().Description}`;
                 bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
                 console.log("You have passed. You have accessed the document information.")
                 // This console log should print if we don't have any errors.
