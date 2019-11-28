@@ -64,7 +64,7 @@
                 Title: title,
                 Price: price,
                 Description: description,
-                Seller: db.doc("users/" + seller)
+                Seller: seller
                 
             }).then(function () {
                 console.log("A book had been successfully listed.")
@@ -96,8 +96,7 @@
                 // Once all the conditions are passed we can then give all of out data to the listBook function
                 //This will take all of the data inputted and give it to the database
                 listBook(authorName, bookTitle, bookPrice, bookDescription, userDisplay);
-            }
-            else {
+            }else {
                 alert("At least one of the four fields has not been entered");
             }
         }
