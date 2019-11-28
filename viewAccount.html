@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <title>StudySource | User Account</title>
@@ -42,9 +42,7 @@
         <hr>
     <div class="row">
         <div class="col-sm-6">
-            <a href="selling.html">
-                <input class="btn inputbutton" type="button" value="Sell Books" id="sellBooksButton">
-            </a>
+            <input class="btn inputbutton" type="button" value="Sell Books" id="sellBooksButton">
         </div>
         <div class="col-sm-6">
             <input class="btn inputbutton" type="button" value="Settings">
@@ -59,7 +57,7 @@
             </div> 
         </div>
         <div class="col-sm-6 form-group ">
-            <h4>Phone #</h4>
+            <h4>Username</h4>
             <div class="form-control" id="emailbox">
             </div> 
         </div>
@@ -68,12 +66,23 @@
     <input class="btn inputbutton" type="button" value="Sold Books">
 
     </div>
+    <hr>
+    <a href="selling.html">
+        <input type="button" value="Sell Books" id="sellBooksButton">
+    </a>
+    <input type="button" value="Settings">
+
+    <p id="email">Email: </p>
+    <p>Phone: </p>
+    <input type="button" value="Purchased Books">
+    <input type="button" value="Sold Books">
 
     <script>
         let userStatus;
         let userInfo;
         let user = firebase.auth().currentUser;
         let userDisplay = user.displayName;
+
         function insertUserData() {
             let user = firebase.auth().currentUser;
             let userDisplay = user.displayName;
