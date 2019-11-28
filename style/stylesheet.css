@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 body {
     background-color: #F2E3D8;
 }
@@ -11,15 +14,6 @@ h1 {
 p {
     font-size: 16px;
 }
-a {
-    text-decoration: none;
-    color: #000000;
-}
-a:hover {
-    text-decoration: none;
-    color: #000000;
-
-}
 .row1 {
     width: 90%;
     margin: auto;
@@ -30,9 +24,6 @@ a:hover {
 .col-sm-8 {
     background-color: #B56E57;
     min-height: 200px;
-}
-.clickable {
-    cursor: pointer;
 }
 .bookListingImageColumn {
     position: relative;
@@ -72,6 +63,10 @@ a:hover {
     min-height: 50px;
     margin-bottom: 25px;
 }
+#headerLogoText{
+    text-decoration: none;
+    color: #000000;
+}
 #searchBar {
     display: flex;
     flex-direction: row;
@@ -80,11 +75,23 @@ a:hover {
 #bookListingBlock {
     text-decoration: none;
     color: #000000;
-    padding: 10px;
 }
-#leftcol {
+#leftcol{
     margin-top: 15px;
 }
 #bookSellingForm {
     max-width: 700px;
+}
+#hr-divider{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+#listed-book-dropdown{
+    text-decoration: none;
+}
+#search-button{
+    width: 100%;
+    font-weight: bold;
+    background-color: #B56E57;
+    margin-top: 10px;
 }

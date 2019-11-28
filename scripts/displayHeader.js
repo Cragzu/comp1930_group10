@@ -3,16 +3,16 @@ document.write(`
     <div class="container-fluid" id="mainHeader">
         <div class="row">
         
-            <div class="col-sm-4 headerColumn text-center" id="leftcol">
+            <div class="col-sm-4 col-3 headerColumn text-center" id="leftcol">
                 <a href="login.html"><button type="button" class="btn btn-primary">Login/Signup</button></a>
             </div>
     
-            <div class="col-sm-4 headerColumn">
+            <div class="col-sm-4 col-3 headerColumn">
                 
                 <a href="index.html" id="headerLogoText"><h1>StudySource</h1></a>
             </div>
     
-            <div class="col-sm-4 headerColumn text-center">
+            <div class="col-sm-4 col-3 headerColumn text-center">
                 <div class="collapse" id="navbarToggleExternalContent">
                     <div class="p-4">
                         <div class="list-group">
