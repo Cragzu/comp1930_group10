@@ -21,7 +21,7 @@ function blockComponent(title, desc, docId, i) {
                    
                         <div class="col-sm-4">
                             <img class="bookImage"
-                                 src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
+                                 src="images/bookPlaceholder.jpg"/>
                         </div>
                         <div class="col-sm-8" id="bookInfoContainer"> <!--Book title and description will go here-->
                         </div>
