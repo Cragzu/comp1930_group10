@@ -15,7 +15,7 @@ document.write(`
                 <div class="collapse" id="navbarToggleExternalContent">
                     <div class="p-4">
                         <div class="list-group">
-                            <a href="underConstruction.html" class="list-group-item border border-dark">Search</a>
+                            <a href="search.html" class="list-group-item border border-dark">Search</a>
                             <a href="underConstruction.html" class="list-group-item border border-dark">About us</a>
                         </div>
                     </div>
