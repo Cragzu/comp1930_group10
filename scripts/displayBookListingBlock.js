@@ -49,7 +49,7 @@ function blockComponent(title, desc, docId, i) {
 
     }
 }
-function later() {
+function addOnClick() {
     for (let j = 0; j < 7; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
@@ -95,6 +95,6 @@ book.get().then(function (querySnapshot) {
         // Add one to the index to make the next id be unique
         console.log(comp)
     });
-    later();
+    addOnClick();
 });
 encod
