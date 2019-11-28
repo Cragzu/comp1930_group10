@@ -2,13 +2,13 @@
 const book = db.collection("books");
 
 function blockComponent(title, desc, docId, i) {
-    // This object constructor will take the book title, book description, and document name, which is docId
+    // This object constructor will take the book title, book description, document name ( which is docId), and i (which is index)
     this.title = title;
     this.description = desc;
     this.docId = docId;
-    // Keep the document ID
     this.i = i;
-    // THis is an index to keep track of
+    // This is an index to keep track of each unique div that is created.
+    // The index will allow us to add a eventListener later
     this.titleText = document.createElement('h1');
     this.descText = document.createElement('p');
     this.displayListingBlock = function () {
@@ -21,7 +21,7 @@ function blockComponent(title, desc, docId, i) {
                    
                         <div class="col-sm-4">
                             <img class="bookImage"
-                                 src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
+                                 src="images/bookPlaceholder.jpg"/>
                         </div>
                         <div class="col-sm-8" id="bookInfoContainer"> <!--Book title and description will go here-->
                         </div>
@@ -44,17 +44,12 @@ function blockComponent(title, desc, docId, i) {
         document.getElementById('bookInfoContainer').removeAttribute('id');
 
 
-        console.log(docId)
-
-
-
-
 
 
 
     }
 }
-function later() {
+function addOnClick() {
     for (let j = 0; j < 7; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
@@ -62,14 +57,17 @@ function later() {
             // This is currently not working >:(
 
 
-            // if (localStorage.getItem("docId") === docId){
-            //     console.log("This ID has already been stored.")
-            // }else{
-            //     localStorage.setItem("docId", docId)
-            // }
+            if (localStorage.getItem("docId") === idList[j]) {
+                // If the stored id is already matching the id of the div that was clicked on the you don't need to store the local info again
+                
+                // Just move to the page
+                document.location.href = "bookListing.html"
+            } else {
+                localStorage.setItem("docId", idList[j])
+                document.location.href = "bookListing.html"
+            }
 
-            localStorage.setItem("docId", idList[j])
-            document.location.href = "bookListing.html"
+            
         })
     }
 }
@@ -78,10 +76,12 @@ var idList = [];
 
 book.get().then(function (querySnapshot) {
     let index = 0;
+    // We keep an index so we can assign to a tag later.
     querySnapshot.forEach(function (doc) {
         let docTitle = doc.data().Title;
         let docDesc = doc.data().Description;
         let docName = doc.id;
+        // This is to get the generated ID of the document
         idList.push(docName)
         // docName will keep the ID of each listing
         // console.log(docName)
@@ -92,8 +92,9 @@ book.get().then(function (querySnapshot) {
         let comp = new blockComponent(docTitle, docDesc, docName, index);
         comp.displayListingBlock();
         index += 1;
+        // Add one to the index to make the next id be unique
         console.log(comp)
     });
-    later();
+    addOnClick();
 });
 encod

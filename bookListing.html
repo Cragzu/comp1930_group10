@@ -18,9 +18,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
-
-
-
     <script src="scripts/firebase_setup.js"></script>
 </head>
 
@@ -28,20 +25,16 @@
     <script src="scripts/displayHeader.js"></script>
     <!--Header should always be displayed first-->
 
-
-
     <div class="centerContainer">
         <div class="innerTextContainer">
 
             <div class="inlineContainer">
-                <h2 id="bookTitle">[Book Title]</h2> <!-- Brian - the firebase book info can display here -->
-                <h2>&nbsp; - &nbsp;</h2>
+                <h2 id="bookTitle">[Book Title]</h2>
                 <h2 id="bookAuthor">[Author Name]</h2>
             </div>
 
-
             <img class="bookImageListingPage"
-                src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg" />
+                src="images/bookPlaceholder.jpg" />
 
             <h3 id="seller">Seller: [Seller Name]</h3>
 
@@ -50,8 +43,12 @@
             </p>
 
             <div class="listingButtonContainer">
-                <button type="button" class="btn btn-primary">View my Cart</button>
-                <button type="button" class="btn btn-primary">Add to Cart</button>
+                <a href="underConstruction.html">
+                    <button type="button" class="btn btn-primary">View my Cart</button>
+                </a>
+                <a href="underConstruction.html">
+                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                </a>
             </div>
 
         </div>
@@ -75,16 +72,13 @@
 
                 console.log(doc.data())
                 bookTitle.innerHTML = doc.data().Title;
-                bookAuthor.innerHTML = `by ${doc.data().Author}`;
-                bookDesc.innerHTML = `Description \
-                 ${doc.data().Description}`;
+                bookAuthor.innerHTML = `&nbsp;by ${doc.data().Author}`;
+                bookDesc.innerHTML = `Description: ${doc.data().Description}`;
                 bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
                 console.log("You have passed. You have accessed the document information.")
                 // This console log should print if we don't have any errors.
             })
 
-
-            
         }
 
         function init() {
@@ -96,5 +90,4 @@
     </script>
 
 </body>
-
 </html>
