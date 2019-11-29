@@ -13,10 +13,12 @@ button {
 }
 h1 {
     font-size: 30px;
-
 }
 p {
     font-size: 16px;
+}
+.row {
+    padding-top: 15px;
 }
 .row1 {
     width: 90%;
@@ -75,6 +77,7 @@ p {
 #headerLogoText{
     text-decoration: none;
     color: #000000;
+    margin-bottom: 15px;
 }
 #searchBar {
     display: flex;
@@ -84,9 +87,6 @@ p {
 #bookListingBlock {
     text-decoration: none;
     color: #000000;
-}
-#leftcol{
-    margin-top: 15px;
 }
 #bookSellingForm {
     max-width: 700px;
@@ -103,4 +103,8 @@ p {
     font-weight: bold;
     background-color: #B56E57;
     margin-top: 10px;
+}
+#profileViewButton {
+    min-width: 100px;
+    min-height: 50px;
 }
