@@ -67,7 +67,8 @@
                 Seller: seller
                 
             }).then(function () {
-                alert("A book had been successfully listed.")
+                window.alert("Your book was listed successfully!");
+                window.location = "viewAccount.html";
             }).catch(function () {
                 console.log("User has failed trying to list a book.");
             })
