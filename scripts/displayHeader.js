@@ -39,10 +39,11 @@ document.write(`
 function init() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-        document.getElementById("profileViewButton").innerHTML = "User yes"
+        document.getElementById("profileViewButton").innerHTML = "View Profile"
 
         } else {
-        document.getElementById("profileViewButton").innerHTML = "User no"
+        document.getElementById("profileViewButton").innerHTML = "Login"
         }
     })
 }
+init();
