@@ -4,7 +4,9 @@ document.write(`
         <div class="row">
         
             <div class="col-sm-4 col-3 headerColumn text-center" id="leftcol">
-                <a href="login.html"><button type="button" class="btn btn-primary">Login/Signup</button></a>
+                <a href="login.html">
+                    <button id="profileViewButton" type="button" class="btn btn-primary">Login/Signup</button>
+                </a>
             </div>
     
             <div class="col-sm-4 headerColumn">
@@ -32,3 +34,15 @@ document.write(`
         </div>
     </div>
 `);
+
+
+function init() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+        document.getElementById("profileViewButton").innerHTML = "User yes"
+
+        } else {
+        document.getElementById("profileViewButton").innerHTML = "User no"
+        }
+    })
+}

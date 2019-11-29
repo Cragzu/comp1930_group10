@@ -1,4 +1,4 @@
-**COMP 1930 Group 10**  
+**COMP 1930 - StudySource**  
 *by Chloe Glave, Alireza Kakan, and Brian Duong*
     
 StudySource is a prototype website allowing students to buy and sell used
