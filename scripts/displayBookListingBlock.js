@@ -23,7 +23,7 @@ function blockComponent(title, desc, docId, i) {
                    
                         <div class="col-sm-4">
                             <img class="bookImage"
-                                 src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg"/>
+                                 src="images/bookPlaceholder.jpg"/>
                         </div>
                         <div class="col-sm-8" id="bookInfoContainer"> <!--Book title and description will go here-->
                         </div>
@@ -45,19 +45,12 @@ function blockComponent(title, desc, docId, i) {
         // Remove id from container so we can set up the next element
         document.getElementById('bookInfoContainer').removeAttribute('id');
 
-
-
-
-
     }
 }
 function addOnClick() {
-    for (let j = 0; j < 7; j++) {
+    for (let j = 0; j < 6; j++) { // todo: change this to be dynamic for the number of books
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
-
-            // This is currently not working >:(
-
 
             if (localStorage.getItem("docId") === idList[j]) {
                 // If the stored id is already matching the id of the div that was clicked on the you don't need to store the local info again
@@ -68,8 +61,6 @@ function addOnClick() {
                 localStorage.setItem("docId", idList[j])
                 document.location.href = "bookListing.html"
             }
-
-
         })
     }
 }

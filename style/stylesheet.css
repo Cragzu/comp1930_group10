@@ -1,3 +1,10 @@
+*{
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
 body {
     background-color: #F2E3D8;
 }
@@ -6,19 +13,12 @@ button {
 }
 h1 {
     font-size: 30px;
-
 }
 p {
     font-size: 16px;
 }
-a {
-    text-decoration: none;
-    color: #000000;
-}
-a:hover {
-    text-decoration: none;
-    color: #000000;
-
+.row {
+    padding-top: 15px;
 }
 .row1 {
     width: 90%;
@@ -30,9 +30,6 @@ a:hover {
 .col-sm-8 {
     background-color: #B56E57;
     min-height: 200px;
-}
-.clickable {
-    cursor: pointer;
 }
 .bookListingImageColumn {
     position: relative;
@@ -49,6 +46,7 @@ a:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin: 15px;
 }
 .inlineContainer {
     display: flex;
@@ -67,10 +65,19 @@ a:hover {
     max-width: 100%;
     max-height: 100%;
 }
+.clickable {
+    cursor: pointer;
+    margin-top: 20px;
+}
 #mainHeader {
     background-color: #ACD0D4;
     min-height: 50px;
     margin-bottom: 25px;
+}
+#headerLogoText{
+    text-decoration: none;
+    color: #000000;
+    margin-bottom: 15px;
 }
 #searchBar {
     display: flex;
@@ -80,11 +87,24 @@ a:hover {
 #bookListingBlock {
     text-decoration: none;
     color: #000000;
-    padding: 10px;
-}
-#leftcol {
-    margin-top: 15px;
 }
 #bookSellingForm {
     max-width: 700px;
+}
+#hr-divider{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+#listed-book-dropdown{
+    text-decoration: none;
+}
+#search-button{
+    width: 100%;
+    font-weight: bold;
+    background-color: #B56E57;
+    margin-top: 10px;
+}
+#profileViewButton {
+    min-width: 100px;
+    min-height: 50px;
 }

@@ -1,116 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>StudySource | User Account</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/stylesheet.css">
-    <link rel="stylesheet" href="style/viewacc.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <link rel="import" href="components/componentMainHeader.html" id="importHeader">
-
-</head>
-
-<body>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpb
-    zo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHq
-    dSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pX
-    B1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+</head>
+<body>
 
-    <!--Our Scripts-->
-    <script src="scripts/firebase_setup.js"></script>
-    <script src="scripts/displayHeader.js"></script>
+<!--Our Scripts-->
+<script src="scripts/firebase_setup.js"></script>
+<script src="scripts/displayHeader.js"></script> <!--Header should always be displayed first-->
     
     <div class="container">
         <div>
             <h1 id="userDisplay">Profile</h1>
         </div>
         <hr>
-    <div class="row">
-        <div class="col-sm-6">
-            <a href="selling.html">
-                <input class="btn inputbutton" type="button" value="Sell Books" id="sellBooksButton">
-            </a>
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="selling.html">
+                    <input class="btn inputbutton" type="button" value="Sell Books">
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="underConstruction.html">
+                    <input class="btn inputbutton" type="button" value="Settings">
+                </a>
+            </div>
         </div>
-        <div class="col-sm-6">
-            <input class="btn inputbutton" type="button" value="Settings">
+
+
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <h4>Name</h4>
+                <p id="userName"/>
+            </div>
+
+            <div class="col-sm-6 form-group ">
+                <h4>Email</h4>
+                <p id="userEmail">
+            </div>
         </div>
-    </div>
-        
-        
-    <div class="row">
-        <div class="col-sm-6 form-group">
-            <h4 id="email">Email</h4>
-            <div class="form-control" id="emailbox">
-            </div> 
-        </div>
-        <div class="col-sm-6 form-group ">
-            <h4>Phone #</h4>
-            <div class="form-control" id="emailbox">
-            </div> 
-        </div>
-    </div>
-    <input class="btn inputbutton" type="button" value="Purchased Books">
-    <input class="btn inputbutton" type="button" value="Sold Books">
+
+        <a href="underConstruction.html">
+            <input class="btn inputbutton" type="button" value="Purchased Books">
+        </a>
+
+        <a href="underConstruction.html">
+            <input class="btn inputbutton" type="button" value="Sold Books">
+        </a>
+
+        <a href="shoppingCart.html">
+            <input class="btn inputbutton" type="button" value="View Shopping Cart">
+        </a>
+
 
     </div>
-
     <script>
         let userStatus;
-
-
-        function insertUserData() {
-            let user = firebase.auth().currentUser;
-            console.log(user)
-            let userDisplay = user.displayName;
-            let userEmail = user.email;
-            let htmlEmail = document.getElementById("email");
-
-            htmlEmail.innerHTML = userEmail;
-            console.log(userEmail);
-        }
 
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     console.log(`There is a user logged in. User: ${user.displayName}`)
-                    // Check which of the users is logged in
+                    let displayName = user.displayName;
+                    let displayEmail = user.email;
+                    console.log(user)
+
+                    db.collection("users").doc(user.displayName).set({
+                        Name: displayName,
+                        Email: displayEmail,
+                    });
                     userStatus = true;
+                    document.getElementById("userName").innerHTML = displayName;
+                    document.getElementById("userEmail").innerHTML = displayEmail;
         
                 } else {
                     console.log(`No one is logged in`);
-                    userStatus = false;
+                    userStatus = false
                 }
-            })
-            insertUserData();
-            // This function should insert the user data into the appropriate tags
+            });
+
             document.getElementById("sellBooksButton").onclick = userSellsBooks;
 
         }
-        init()
-
-
-        function userSellsBooks() {
-            document.location.href = "selling.html";
-        }
-
+        init();
 
     </script>
-
 </body>
-
 </html>
