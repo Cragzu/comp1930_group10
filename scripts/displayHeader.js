@@ -27,7 +27,7 @@ document.write(`
                     data-toggle="collapse"
                     data-target="#navbarToggleExternalContent"
                     aria-controls="navbarToggleExternalContent" aria-expanded="false"
-                    aria-label="Toggle navigation"></span>
+                    aria-label="Toggle navigation"/>
                 </nav>
             </div>
             
