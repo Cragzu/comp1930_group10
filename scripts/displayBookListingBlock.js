@@ -3,12 +3,14 @@ const book = db.collection("books");
 
 function blockComponent(title, desc, docId, i) {
     // This object constructor will take the book title, book description, document name ( which is docId), and i (which is index)
+
     this.title = title;
     this.description = desc;
     this.docId = docId;
     this.i = i;
     // This is an index to keep track of each unique div that is created.
     // The index will allow us to add a eventListener later
+
     this.titleText = document.createElement('h1');
     this.descText = document.createElement('p');
     this.displayListingBlock = function () {
@@ -49,7 +51,7 @@ function blockComponent(title, desc, docId, i) {
 
     }
 }
-function later() {
+function addOnClick() {
     for (let j = 0; j < 7; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
@@ -59,7 +61,7 @@ function later() {
 
             if (localStorage.getItem("docId") === idList[j]) {
                 // If the stored id is already matching the id of the div that was clicked on the you don't need to store the local info again
-                
+
                 // Just move to the page
                 document.location.href = "bookListing.html"
             } else {
@@ -67,7 +69,7 @@ function later() {
                 document.location.href = "bookListing.html"
             }
 
-            
+
         })
     }
 }
@@ -95,6 +97,6 @@ book.get().then(function (querySnapshot) {
         // Add one to the index to make the next id be unique
         console.log(comp)
     });
-    later();
+    addOnClick();
 });
 encod

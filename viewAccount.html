@@ -37,7 +37,7 @@
     
     <div class="container">
         <div>
-            <h1>Profile</h1>
+            <h1 id="userDisplay">Profile</h1>
         </div>
         <hr>
     <div class="row">
@@ -54,7 +54,7 @@
         
     <div class="row">
         <div class="col-sm-6 form-group">
-            <h4>Email</h4>
+            <h4 id="email">Email</h4>
             <div class="form-control" id="emailbox">
             </div> 
         </div>
@@ -71,40 +71,33 @@
 
     <script>
         let userStatus;
-        let userInfo;
-        let user = firebase.auth().currentUser;
-        let userDisplay = user.displayName;
+
+
         function insertUserData() {
             let user = firebase.auth().currentUser;
+            console.log(user)
             let userDisplay = user.displayName;
-
+            let userEmail = user.email;
             let htmlEmail = document.getElementById("email");
 
-            htmlEmail.innerHTML += userEmail;
+            htmlEmail.innerHTML = userEmail;
             console.log(userEmail);
         }
 
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-
                     console.log(`There is a user logged in. User: ${user.displayName}`)
-                    // userInfo = user;
-                    x = user.displayName
-                    e = user.email
-                    console.log(`${x} and ${e}`)
-                    db.collection("users").doc(user.displayName).set({
-                        Name: x,
-                        Email: e
-                    })
-                    userStatus = true
+                    // Check which of the users is logged in
+                    userStatus = true;
         
                 } else {
-                    console.log(`No one is logged in`)
-                    userStatus = false
+                    console.log(`No one is logged in`);
+                    userStatus = false;
                 }
             })
-
+            insertUserData();
+            // This function should insert the user data into the appropriate tags
             document.getElementById("sellBooksButton").onclick = userSellsBooks;
 
         }
