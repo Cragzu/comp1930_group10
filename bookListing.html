@@ -29,13 +29,13 @@
         <div class="innerTextContainer">
 
             <div class="inlineContainer">
-                <h2 id="bookTitle">[Book Title]</h2> <!-- Brian - the firebase book info can display here -->
-                <h2>&nbsp; - &nbsp;</h2>
+                <h2 id="bookTitle">[Book Title]</h2>
                 <h2 id="bookAuthor">[Author Name]</h2>
             </div>
 
             <img class="bookImageListingPage"
-                src="https://www.mycommercespot.com/wp-content/uploads/2019/06/books-521812297.jpg" />
+                src="images/bookPlaceholder.jpg" />
+            <h1 id="price">Price: $placeholder</h1>
 
             <h3 id="seller">Seller: [Seller Name]</h3>
 
@@ -44,16 +44,22 @@
             </p>
 
             <div class="listingButtonContainer">
-                <button type="button" class="btn btn-primary">View my Cart</button>
-                <button type="button" class="btn btn-primary">Add to Cart</button>
+                <a href="shoppingCart.html">
+                    <button type="button" class="btn btn-primary">View my Cart</button>
+                </a>
+                <a href="underConstruction.html">
+                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                </a>
             </div>
 
         </div>
     </div>
 
     <script>
+        let docId = localStorage.getItem("docId")
+
         function getCurrentData() {
-            let docId = localStorage.getItem("docId")
+            
             console.log(docId)
             // Print out and see if we actually got a proper document ID or not. Warning will be shown if docId fails to get overwritten
 
@@ -61,26 +67,42 @@
             let bookAuthor = document.getElementById("bookAuthor");
             let bookDesc = document.getElementById("bookDescription");
             let bookSeller = document.getElementById("seller");
+            let bookPrice = document.getElementById("price");
 
             db.collection("books").doc(`${docId}`).onSnapshot(function (doc) {
                 // Try to access the data if the docId change is working.
 
-                // This currently doesn't work because we can't access the docId.
 
-                console.log(doc.data())
+                console.log(doc.data());
                 bookTitle.innerHTML = doc.data().Title;
-                bookAuthor.innerHTML = `by ${doc.data().Author}`;
+                bookAuthor.innerHTML = `&nbsp;by ${doc.data().Author}`;
                 bookDesc.innerHTML = `Description: ${doc.data().Description}`;
                 bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
+                bookPrice.innerHTML = `Price: &#36;${doc.data().Price}`;
                 console.log("You have passed. You have accessed the document information.")
                 // This console log should print if we don't have any errors.
             })
-
         }
+
+        // function addBookToCart(){
+        //     let user = firebase.auth().currentUser;
+        //     let userDisplay = user.displayName;
+        //     db.collection('users').doc(`${user.displayName}`).collection("cart").doc(`${docId}`)
+        // }
 
         function init() {
             // Run the functions in this script.
-            getCurrentData()
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    console.log(`There is a user logged in. User: ${user}`);
+                    userStatus = true
+                } else {
+                    console.log(`No one is logged in`);
+                    userStatus = false
+                }
+            })
+            getCurrentData();
+            // document.getElementById("addToCart").onclick = addBookToCart();
         }
 
         init();
