@@ -50,7 +50,7 @@ function blockComponent(title, desc, docId, i) {
     }
 }
 function addOnClick() {
-    for (let j = 0; j < 7; j++) {
+    for (let j = 0; j < 4; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
@@ -74,6 +74,8 @@ function addOnClick() {
 
 var idList = [];
 
+
+
 book.get().then(function (querySnapshot) {
     let index = 0;
     // We keep an index so we can assign to a tag later.
@@ -95,6 +97,25 @@ book.get().then(function (querySnapshot) {
         // Add one to the index to make the next id be unique
         console.log(comp)
     });
-    addOnClick();
+
+    
+    
 });
+function init() {
+    // firebase.auth().onAuthStateChanged(function (user) {
+    //     if (user) {
+    //         console.log(`There is a user logged in. User: ${user}`);
+    //         userStatus = true;
+    //     } else {
+    //         console.log(`No one is logged in`);
+    //         userStatus = false;
+    //     }``
+    // })
+    // book.get().then(function (querySnapshot) {
+
+    // })
+
+    addOnClick();
+}
+init();
 encod

@@ -72,17 +72,16 @@
     <script>
         let userStatus;
         let userInfo;
-        let user = firebase.auth().currentUser;
-        let userDisplay = user.displayName;
-        function insertUserData() {
-            let user = firebase.auth().currentUser;
-            let userDisplay = user.displayName;
 
-            let htmlEmail = document.getElementById("email");
+        // function insertUserData() {
+        //     let user = firebase.auth().currentUser;
+        //     let userDisplay = user.displayName;
 
-            htmlEmail.innerHTML += userEmail;
-            console.log(userEmail);
-        }
+        //     let htmlEmail = document.getElementById("email");
+
+        //     htmlEmail.innerHTML += userEmail;
+        //     console.log(userEmail);
+        // }
 
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
@@ -90,12 +89,12 @@
 
                     console.log(`There is a user logged in. User: ${user.displayName}`)
                     // userInfo = user;
-                    x = user.displayName
-                    e = user.email
+                    displayName = user.displayName
+                    email = user.email
                     console.log(`${x} and ${e}`)
                     db.collection("users").doc(user.displayName).set({
-                        Name: x,
-                        Email: e
+                        Name: displayName,
+                        Email: email
                     })
                     userStatus = true
         
