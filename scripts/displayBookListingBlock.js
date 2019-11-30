@@ -1,5 +1,7 @@
 // Constants
 const book = db.collection("books");
+let size;
+let index;
 
 function blockComponent(title, desc, docId, i) {
     // This object constructor will take the book title, book description, document name ( which is docId), and i (which is index)
@@ -48,7 +50,7 @@ function blockComponent(title, desc, docId, i) {
     }
 }
 function addOnClick() {
-    for (let j = 0; j < 6; j++) { // todo: change this to be dynamic for the number of books
+    for (let j = 0; j < size; j++) { // todo: change this to be dynamic for the number of books
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
@@ -65,10 +67,22 @@ function addOnClick() {
     }
 }
 
+function init() {
+    index = 0;
+
+    book.get().then(snap => {
+        size = snap.size
+        console.log(`This is the size of the books document: ${size}`)
+    })
+    
+}
+
+init()
+
 var idList = [];
 
 book.get().then(function (querySnapshot) {
-    let index = 0;
+    
     // We keep an index so we can assign to a tag later.
     querySnapshot.forEach(function (doc) {
         let docTitle = doc.data().Title;
@@ -86,8 +100,8 @@ book.get().then(function (querySnapshot) {
         comp.displayListingBlock();
         index += 1;
         // Add one to the index to make the next id be unique
-        console.log(comp)
+        console.log(doc.id, " => ", doc.data())
     });
     addOnClick();
 });
-encod
+
