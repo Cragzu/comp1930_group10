@@ -30,36 +30,43 @@
             <h1>Profile</h1>
         </div>
         <hr>
-    <div class="row">
-        <div class="col-sm-6">
-            <a href="selling.html">
-                <input class="btn inputbutton" type="button" value="Sell Books" id="sellBooksButton">
-            </a>
-        </div>
-        <div class="col-sm-6">
-            <input class="btn inputbutton" type="button" value="Settings">
-        </div>
-    </div>
-        
-        
-    <div class="row">
-        <div class="col-sm-6 form-group">
-            <h4>Name</h4>
-            <p id="userName"/>
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="selling.html">
+                    <input class="btn inputbutton" type="button" value="Sell Books" id="sellBooksButton">
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="underConstruction.html">
+                    <input class="btn inputbutton" type="button" value="Settings">
+                </a>
+            </div>
         </div>
 
-        <div class="col-sm-6 form-group ">
-            <h4>Email</h4>
-            <p id="userEmail">
+
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <h4>Name</h4>
+                <p id="userName"/>
+            </div>
+
+            <div class="col-sm-6 form-group ">
+                <h4>Email</h4>
+                <p id="userEmail">
+            </div>
         </div>
-    </div>
-    <input class="btn inputbutton" type="button" value="Purchased Books">
-    <input class="btn inputbutton" type="button" value="Sold Books">
+
+        <a href="underConstruction.html">
+            <input class="btn inputbutton" type="button" value="Purchased Books">
+        </a>
+
+        <a href="underConstruction.html">
+            <input class="btn inputbutton" type="button" value="Sold Books">
+        </a>
 
     </div>
     <script>
         let userStatus;
-        let userInfo;
 
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
@@ -81,19 +88,17 @@
                     console.log(`No one is logged in`);
                     userStatus = false
                 }
-            })
+            });
 
             document.getElementById("sellBooksButton").onclick = userSellsBooks;
 
         }
-        init()
+        init();
 
         function userSellsBooks() {
             document.location.href = "selling.html";
         }
 
     </script>
-
 </body>
-
 </html>
