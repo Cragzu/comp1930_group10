@@ -60,21 +60,6 @@
             <input class="btn inputbutton" type="button" value="Purchased Books">
         </a>
 
-<<<<<<< HEAD
-    <script>
-        let userStatus;
-        let userInfo;
-
-        // function insertUserData() {
-        //     let user = firebase.auth().currentUser;
-        //     let userDisplay = user.displayName;
-
-        //     let htmlEmail = document.getElementById("email");
-
-        //     htmlEmail.innerHTML += userEmail;
-        //     console.log(userEmail);
-        // }
-=======
         <a href="underConstruction.html">
             <input class="btn inputbutton" type="button" value="Sold Books">
         </a>
@@ -87,23 +72,11 @@
     </div>
     <script>
         let userStatus;
->>>>>>> aa26ecc25254419c43e5e2ef4d8db8ad4b3c9bd7
 
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     console.log(`There is a user logged in. User: ${user.displayName}`)
-<<<<<<< HEAD
-                    // userInfo = user;
-                    displayName = user.displayName
-                    email = user.email
-                    console.log(`${x} and ${e}`)
-                    db.collection("users").doc(user.displayName).set({
-                        Name: displayName,
-                        Email: email
-                    })
-                    userStatus = true
-=======
                     let displayName = user.displayName;
                     let displayEmail = user.email;
 
@@ -119,7 +92,6 @@
                     userStatus = true;
                     document.getElementById("userName").innerHTML = displayName;
                     document.getElementById("userEmail").innerHTML = displayEmail;
->>>>>>> aa26ecc25254419c43e5e2ef4d8db8ad4b3c9bd7
         
                 } else {
                     console.log(`No one is logged in`);

@@ -50,11 +50,7 @@ function blockComponent(title, desc, docId, i) {
     }
 }
 function addOnClick() {
-<<<<<<< HEAD
-    for (let j = 0; j < 4; j++) {
-=======
     for (let j = 0; j < size; j++) { // todo: change this to be dynamic for the number of books
->>>>>>> aa26ecc25254419c43e5e2ef4d8db8ad4b3c9bd7
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
@@ -112,25 +108,3 @@ book.get().then(function (querySnapshot) {
     
     
 });
-<<<<<<< HEAD
-function init() {
-    // firebase.auth().onAuthStateChanged(function (user) {
-    //     if (user) {
-    //         console.log(`There is a user logged in. User: ${user}`);
-    //         userStatus = true;
-    //     } else {
-    //         console.log(`No one is logged in`);
-    //         userStatus = false;
-    //     }``
-    // })
-    // book.get().then(function (querySnapshot) {
-
-    // })
-
-    addOnClick();
-}
-init();
-encod
-=======
-
->>>>>>> aa26ecc25254419c43e5e2ef4d8db8ad4b3c9bd7
