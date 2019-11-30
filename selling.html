@@ -19,11 +19,13 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 </head>
+
 <body>
 
-<!--Our Scripts-->
-<script src="scripts/firebase_setup.js"></script>
-<script src="scripts/displayHeader.js"></script> <!--Header should always be displayed first-->
+    <!--Our Scripts-->
+    <script src="scripts/firebase_setup.js"></script>
+    <script src="scripts/displayHeader.js"></script>
+    <!--Header should always be displayed first-->
     <h1> Selling </h1>
     <h4> Enter information about your book here. </h4>
 
@@ -52,7 +54,7 @@
                 <label for="bookDescription">
                     Description:
                 </label>
-                  <textarea id="bookDescription" name="book_desc" class="form-control md-textarea" rows="5"></textarea>
+                <textarea id="bookDescription" name="book_desc" class="form-control md-textarea" rows="5"></textarea>
 
             </div>
             <div>
@@ -80,7 +82,7 @@
                 Price: price,
                 Description: description,
                 Seller: seller
-                
+
             }).then(function () {
                 window.alert("Your book was listed successfully!");
                 window.location = "viewAccount.html";
@@ -118,18 +120,18 @@
             }
         }
 
+
+
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    console.log(`There is a user logged in. User: ${user}`);
-                    userStatus = true
+                    console.log(`A user is logged in: ${user.displayName}`)
                 } else {
-                    console.log(`No one is logged in`);
-                    userStatus = false
+                    console.log(`No user us logged in.`)
                 }
-            })
+            });
             document.getElementById("listButton").onclick = checkTextBox;
-        // When you click the button it will check the fields before you can list the book.
+            // When you click the button it will check the fields before you can list the book.
 
         }
         init();
