@@ -44,14 +44,13 @@
         
     <div class="row">
         <div class="col-sm-6 form-group">
-            <h4>Email</h4>
-            <div class="form-control" id="emailbox">
-            </div> 
+            <h4>Name</h4>
+            <p id="userName"/>
         </div>
+
         <div class="col-sm-6 form-group ">
-            <h4>Username</h4>
-            <div class="form-control" id="emailbox">
-            </div> 
+            <h4>Email</h4>
+            <p id="userEmail">
         </div>
     </div>
     <input class="btn inputbutton" type="button" value="Purchased Books">
@@ -62,33 +61,24 @@
         let userStatus;
         let userInfo;
 
-        // function insertUserData() {
-        //     let user = firebase.auth().currentUser;
-        //     let userDisplay = user.displayName;
-        //
-        //     let htmlEmail = document.getElementById("email");
-        //
-        //     htmlEmail.innerHTML += userEmail;
-        //     console.log(userEmail);
-        // }
-
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
 
                     console.log(`There is a user logged in. User: ${user.displayName}`)
-                    // userInfo = user;
-                    x = user.displayName
-                    e = user.email
-                    console.log(`${x} and ${e}`)
+                    let displayName = user.displayName;
+                    let displayEmail = user.email;
+
                     db.collection("users").doc(user.displayName).set({
-                        Name: x,
-                        Email: e
-                    })
-                    userStatus = true
+                        Name: displayName,
+                        Email: displayEmail,
+                    });
+                    userStatus = true;
+                    document.getElementById("userName").innerHTML = displayName;
+                    document.getElementById("userEmail").innerHTML = displayEmail;
         
                 } else {
-                    console.log(`No one is logged in`)
+                    console.log(`No one is logged in`);
                     userStatus = false
                 }
             })
@@ -97,7 +87,6 @@
 
         }
         init()
-
 
         function userSellsBooks() {
             document.location.href = "selling.html";
