@@ -50,7 +50,7 @@ function blockComponent(title, desc, docId, i) {
     }
 }
 function addOnClick() {
-    for (let j = 0; j < size; j++) { // todo: change this to be dynamic for the number of books
+    for (let j = 0; j < size; j++) { 
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
@@ -67,44 +67,55 @@ function addOnClick() {
     }
 }
 
-function init() {
-    index = 0;
 
-    book.get().then(snap => {
-        size = snap.size
-        console.log(`This is the size of the books document: ${size}`)
-    })
-    
-}
-
-init()
 
 var idList = [];
 
 
+function createListings() {
+    book.get().then(function (querySnapshot) {
 
-book.get().then(function (querySnapshot) {
-    
-    // We keep an index so we can assign to a tag later.
-    querySnapshot.forEach(function (doc) {
-        let docTitle = doc.data().Title;
-        let docDesc = doc.data().Description;
-        let docName = doc.id;
-        // This is to get the generated ID of the document
-        idList.push(docName)
-        // docName will keep the ID of each listing
-        // console.log(docName)
-        localStorage.setItem("test", "test is working")
-        // test is to test localStorage is working
-        localStorage.setItem("docId", "If you see this the test failed.")
-        // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
-        let comp = new blockComponent(docTitle, docDesc, docName, index);
-        comp.displayListingBlock();
-        index += 1;
-        // Add one to the index to make the next id be unique
-        console.log(doc.id, " => ", doc.data())
-    });
+        // We keep an index so we can assign to a tag later.
+        querySnapshot.forEach(function (doc) {
+            let docTitle = doc.data().Title;
+            let docDesc = doc.data().Description;
+            let docName = doc.id;
+            // This is to get the generated ID of the document
+            idList.push(docName)
+            // docName will keep the ID of each listing
+            // console.log(docName)
+            localStorage.setItem("test", "test is working")
+            // test is to test localStorage is working
+            localStorage.setItem("docId", "If you see this the test failed.")
+            // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
+            let comp = new blockComponent(docTitle, docDesc, docName, index);
+            comp.displayListingBlock();
+            index += 1;
+            // Add one to the index to make the next id be unique
+            console.log(doc.id, " => ", doc.data())
+        });
 
+        addOnClick();
+        // This function needs to be here.
+        // For some reason it doesn't work when it's anywhere else.
+
+
+    })
+};
+
+function init() {
+    console.log(`The init function ran`)
+    index = 0;
+
+    book.get().then(snap => {
+        size = snap.size
+        // This will return the number of how many documents are inside of the books collection
+        console.log(`This is the size of the books document: ${size}`)
+    })
+    createListings();
     
-    
-});
+
+}
+
+init()
+

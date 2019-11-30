@@ -80,6 +80,7 @@
                 bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
                 bookPrice.innerHTML = `Price: &#36;${doc.data().Price}`;
                 console.log("You have passed. You have accessed the document information.")
+                console.log(`This is the document id: ${doc.data().docId}`)
                 // This console log should print if we don't have any errors.
             })
         }
