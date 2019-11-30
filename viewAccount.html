@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <a href="selling.html">
-                    <input class="btn inputbutton" type="button" value="Sell Books" id="sellBooksButton">
+                    <input class="btn inputbutton" type="button" value="Sell Books">
                 </a>
             </div>
             <div class="col-sm-6">
@@ -64,6 +64,11 @@
             <input class="btn inputbutton" type="button" value="Sold Books">
         </a>
 
+        <a href="shoppingCart.html">
+            <input class="btn inputbutton" type="button" value="View Shopping Cart">
+        </a>
+
+
     </div>
     <script>
         let userStatus;
@@ -75,6 +80,7 @@
                     console.log(`There is a user logged in. User: ${user.displayName}`)
                     let displayName = user.displayName;
                     let displayEmail = user.email;
+                    console.log(user)
 
                     db.collection("users").doc(user.displayName).set({
                         Name: displayName,
@@ -94,10 +100,6 @@
 
         }
         init();
-
-        function userSellsBooks() {
-            document.location.href = "selling.html";
-        }
 
     </script>
 </body>
