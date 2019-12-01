@@ -33,8 +33,7 @@
                 <h2 id="bookAuthor">[Author Name]</h2>
             </div>
 
-            <img class="bookImageListingPage"
-                src="images/bookPlaceholder.jpg" />
+            <img class="bookImageListingPage" src="images/bookPlaceholder.jpg" />
             <h1 id="price">Price: $placeholder</h1>
 
             <h3 id="seller">Seller: [Seller Name]</h3>
@@ -48,7 +47,7 @@
                     <button type="button" class="btn btn-primary">View my Cart</button>
                 </a>
                 <a href="underConstruction.html">
-                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                    <button type="button" class="btn btn-primary" id="addToCart">Add to Cart</button>
                 </a>
             </div>
 
@@ -56,10 +55,12 @@
     </div>
 
     <script>
-        let docId = localStorage.getItem("docId")
+        const docId = localStorage.getItem("docId");
+        const userDisplayName = localStorage.getItem("userDisplayName");
+        let cartIndex;
 
         function getCurrentData() {
-            
+
             console.log(docId)
             // Print out and see if we actually got a proper document ID or not. Warning will be shown if docId fails to get overwritten
 
@@ -84,18 +85,53 @@
                 // This console log should print if we don't have any errors.
             })
         }
+        function bookIteration() {
+            cartIndex = 1;
+            console.log(`Book iteration is working`)
+            db.collection("users").doc(userDisplayName).collection("cart").get()
+                .then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        console.log(`The current docID is : ${doc.id}`)
+                        // doc.data() is never undefined for query doc snapshots
+                        if (doc.id == "book" + cartIndex) {
+                            console.log("We found book1")
+                            cartIndex += 1;
+                            console.log(`THis is the current cartINdex after it 1 gets added it it: ${cartIndex}`)
+                        } else {
+                            console.log("JK, there was no book1")
+                            return null
+                        }
 
-        // function addBookToCart(){
-        //     let user = firebase.auth().currentUser;
-        //     let userDisplay = user.displayName;
-        //     db.collection('users').doc(`${user.displayName}`).collection("cart").doc(`${docId}`)
-        // }
+                        console.log(doc.id, " => ", doc.data());
+                    });
+                });
+            console.log(`THis is the current cartINdex before the function sends it out: ${cartIndex}`)
+            return cartIndex
+        }
+
+        bookIteration()
+
+        function addBookToCart() {
+            // This function is supposed to add books to the logged in user cart
+            let user = firebase.auth().currentUser;
+            let userDisplay = user.displayName;
+            db.collection("users").doc(userDisplayName).collection("cart").doc("book" + cartIndex).set({
+                bookId: docId,
+            }).then(function () {
+                console.log(`A book was added under the docID: book` + cartIndex)
+            }).catch(function() {
+                console.log(`The book was not added to cart.`)
+            })
+
+        }
+
+
 
         function init() {
             // Run the functions in this script.
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    console.log(`There is a user logged in. User: ${user}`);
+                    console.log(`There is a user logged in. User: ${user.displayName}`);
                     userStatus = true
                 } else {
                     console.log(`No one is logged in`);
@@ -104,10 +140,12 @@
             })
             getCurrentData();
             // document.getElementById("addToCart").onclick = addBookToCart();
+            document.getElementById("addToCart")
         }
 
         init();
     </script>
 
 </body>
+
 </html>
