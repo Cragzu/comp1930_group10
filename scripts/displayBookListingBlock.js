@@ -46,11 +46,8 @@ function blockComponent(title, desc, docId, i) {
     }
 }
 function addOnClick() {
-<<<<<<< Updated upstream
     for (let j = 0; j < 3; j++) {
-=======
-    for (let j = 0; j < 4; j++) {
->>>>>>> Stashed changes
+
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 

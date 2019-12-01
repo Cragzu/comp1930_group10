@@ -70,7 +70,10 @@
                     Listed within the past: <span><i class="glyphicon glyphicon-triangle-bottom"></i></span>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" id="listed-book-dropdown" href="#">book 1</a>
+                    <a class="dropdown-item" id="listed-book-dropdown1" href="#">Less than 5 days</a><br/>
+                    <a class="dropdown-item" id="listed-book-dropdown2" href="#">Less than 15 days</a><br/>
+                    <a class="dropdown-item" id="listed-book-dropdown3" href="#">Less than one month</a><br/>
+                    <a class="dropdown-item" id="listed-book-dropdown4" href="#">Less than 3 months</a>
                 </div>
             </div>
             <button type="submit" class="btn" id="search-button">Search</button>
@@ -78,8 +81,11 @@
         <script>
             let dropdownBooks = document.getElementById("listed-book-dropdown")
             let buttonList = document.getElementById("button-list")
-            dropdownBooks.onclick = function(){
-                buttonList.innerHTML = dropdownBooks.innerHTML;
+            for(let i = 0; i < 4; i++){
+                dropdownBooks.onclick = function(){
+                buttonList.innerHTML = dropdownBooks.innerHTML + i;
+            }
+            
             }
         </script>
     </body>
