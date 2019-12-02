@@ -76,8 +76,6 @@
 
     function listBook(author, title, price, description, seller) {
 
-        console.log("This is the start of listing a book.");
-
         db.collection("books").add({
             Author: author,
             Title: title[0].toUpperCase() + title.slice(1),
@@ -102,15 +100,16 @@
         let user = firebase.auth().currentUser;
         let userDisplay = user.displayName;
 
-        if (bookTitle && !(/\d/.test(authorName)) && /^\d+$/.test(bookPrice) && bookDescription) {
+        if (bookTitle && !(/\d/.test(authorName)) && (bookPrice && !isNaN(bookPrice)) && bookDescription) {
             /*
             The conditions check is:
             1. Check if something is filled in for title
             2. Check if author name is only letters; this will automatically fail if nothing is filled in
-            3. Check if bookPrice is a number or not. If the user has entered only numbers, but the text field has a space in it, the book will not be listed.
+            3. (!isNaN(bookPrice) && bookPrice) Check if bookPrice is a number or not. Th !isNaN will return true
+            if the string is only numbers. And having bookPrice by itself will check where the text field is empty or not.
             4. If there is ANYTHING typed in the book description section it will pass
             */
-            console.log("The user passed all the fields");
+
             // Once all the conditions are passed we can then give all of out data to the listBook function
             //This will take all of the data inputted and give it to the database
             listBook(authorName, bookTitle, bookPrice, bookDescription, userDisplay);
