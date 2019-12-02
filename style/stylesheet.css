@@ -24,8 +24,15 @@ p {
     width: 90%;
     margin: auto;
 }
+.centered{
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
 .headerColumn {
     text-align: center;
+}
+.margin-bottom-15{
+    margin-bottom: 15px;
 }
 .col-sm-8 {
     background-color: #B56E57;
