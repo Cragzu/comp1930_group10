@@ -2,6 +2,7 @@
 const book = db.collection("books");
 let size;
 let index;
+let idList;
 
 function blockComponent(title, desc, docId, i) {
     // This object constructor will take the book title, book description, document name ( which is docId), and i (which is index)
@@ -69,7 +70,7 @@ function addOnClick() {
 }
 
 
-var idList = [];
+
 
 
 function createListings() {
@@ -83,11 +84,7 @@ function createListings() {
             // This is to get the generated ID of the document
             idList.push(docName);
             // docName will keep the ID of each listing
-            // console.log(docName)
-            localStorage.setItem("test", "test is working");
-            // test is to test localStorage is working
-            localStorage.setItem("docId", "If you see this the test failed.");
-            // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
+
             let comp = new blockComponent(docTitle, docDesc, docName, index);
             comp.displayListingBlock();
             index += 1;
@@ -106,6 +103,7 @@ function createListings() {
 function init() {
     console.log(`The init function ran`);
     index = 0;
+    idList = [];
 
     book.get().then(snap => {
         size = snap.size;
