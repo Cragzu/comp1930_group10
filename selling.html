@@ -99,15 +99,13 @@
         let bookDescription = document.getElementById("bookDescription").value;
         let user = firebase.auth().currentUser;
         let userDisplay = user.displayName;
-        console.log('Desc is:', bookDescription);
 
-        if (bookTitle && !(/\d/.test(authorName)) && !isNaN(bookPrice) && bookDescription) {
+        if (bookTitle && !(/\d/.test(authorName)) && /^\d+$/.test(bookPrice) && bookDescription) {
             /*
             The conditions check is:
             1. Check if something is filled in for title
             2. Check if author name is only letters; this will automatically fail if nothing is filled in
-            3. Check if the price entered is a number; this will automatically fail if nothing is filled in
-                - isNaN: 50 = false; !isNan: 50 = true
+            3. Check if bookPrice is a number or not. If the user has entered only numbers, but the text field has a space in it, the book will not be listed.
             4. If there is ANYTHING typed in the book description section it will pass
             */
             console.log("The user passed all the fields");
