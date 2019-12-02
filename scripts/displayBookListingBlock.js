@@ -49,8 +49,9 @@ function blockComponent(title, desc, docId, i) {
 
     }
 }
+
 function addOnClick() {
-    for (let j = 0; j < size; j++) { 
+    for (let j = 0; j < size; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
@@ -66,7 +67,6 @@ function addOnClick() {
         })
     }
 }
-
 
 
 var idList = [];
@@ -113,7 +113,7 @@ function init() {
         console.log(`This is the size of the books document: ${size}`)
     });
     createListings();
-    
+
 
 }
 
