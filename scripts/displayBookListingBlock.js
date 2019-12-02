@@ -1,14 +1,18 @@
 // Constants
 const book = db.collection("books");
+let size;
+let index;
 
 function blockComponent(title, desc, docId, i) {
     // This object constructor will take the book title, book description, document name ( which is docId), and i (which is index)
+
     this.title = title;
     this.description = desc;
     this.docId = docId;
     this.i = i;
     // This is an index to keep track of each unique div that is created.
     // The index will allow us to add a eventListener later
+
     this.titleText = document.createElement('h1');
     this.descText = document.createElement('p');
     this.displayListingBlock = function () {
@@ -46,52 +50,72 @@ function blockComponent(title, desc, docId, i) {
     }
 }
 function addOnClick() {
-    for (let j = 0; j < 3; j++) {
-
+    for (let j = 0; j < size; j++) { 
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
-            // This is currently not working >:(
-
-
             if (localStorage.getItem("docId") === idList[j]) {
                 // If the stored id is already matching the id of the div that was clicked on the you don't need to store the local info again
-                
+
                 // Just move to the page
                 document.location.href = "bookListing.html"
             } else {
                 localStorage.setItem("docId", idList[j])
                 document.location.href = "bookListing.html"
             }
-
-            
         })
     }
 }
 
+
+
 var idList = [];
 
-book.get().then(function (querySnapshot) {
-    let index = 0;
-    // We keep an index so we can assign to a tag later.
-    querySnapshot.forEach(function (doc) {
-        let docTitle = doc.data().Title;
-        let docDesc = doc.data().Description;
-        let docName = doc.id;
-        // This is to get the generated ID of the document
-        idList.push(docName)
-        // docName will keep the ID of each listing
-        // console.log(docName)
-        localStorage.setItem("test", "test is working")
-        // test is to test localStorage is working
-        localStorage.setItem("docId", "If you see this the test failed.")
-        // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
-        let comp = new blockComponent(docTitle, docDesc, docName, index);
-        comp.displayListingBlock();
-        index += 1;
-        // Add one to the index to make the next id be unique
-        console.log(comp)
-    });
-    addOnClick();
-});
-encod
+
+function createListings() {
+    book.get().then(function (querySnapshot) {
+
+        // We keep an index so we can assign to a tag later.
+        querySnapshot.forEach(function (doc) {
+            let docTitle = doc.data().Title;
+            let docDesc = doc.data().Description;
+            let docName = doc.id;
+            // This is to get the generated ID of the document
+            idList.push(docName)
+            // docName will keep the ID of each listing
+            // console.log(docName)
+            localStorage.setItem("test", "test is working")
+            // test is to test localStorage is working
+            localStorage.setItem("docId", "If you see this the test failed.")
+            // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
+            let comp = new blockComponent(docTitle, docDesc, docName, index);
+            comp.displayListingBlock();
+            index += 1;
+            // Add one to the index to make the next id be unique
+            console.log(doc.id, " => ", doc.data())
+        });
+
+        addOnClick();
+        // This function needs to be here.
+        // For some reason it doesn't work when it's anywhere else.
+
+
+    })
+};
+
+function init() {
+    console.log(`The init function ran`)
+    index = 0;
+
+    book.get().then(snap => {
+        size = snap.size
+        // This will return the number of how many documents are inside of the books collection
+        console.log(`This is the size of the books document: ${size}`)
+    })
+    createListings();
+    
+
+}
+
+init()
+

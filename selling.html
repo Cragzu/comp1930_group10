@@ -3,14 +3,31 @@
 
 <head>
     <title>StudySource | Selling Product</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style/stylesheet.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 </head>
 
 <body>
-    <script src="scripts/displayHeader.js"></script> <!--Header should always be at the top of the body-->
+
+    <!--Our Scripts-->
+    <script src="scripts/firebase_setup.js"></script>
+    <script src="scripts/displayHeader.js"></script>
+    <!--Header should always be displayed first-->
     <h1> Selling </h1>
-    <h4> Selling the textbooks </h4>
+    <h4> Enter information about your book here. </h4>
 
     <div id="bookSellingForm">
         <form>
@@ -19,7 +36,7 @@
                     Title of Book:
                 </label>
                 <input type="text" id="bookTitle" name="book_title"
-                    placeholder="E.g. Writing In the Technical Fields 2nd Edition">
+                    placeholder="Writing In the Technical Fields 2nd Edition">
             </div>
             <div>
                 <label for="author">
@@ -37,7 +54,7 @@
                 <label for="bookDescription">
                     Description:
                 </label>
-                  <textarea id="bookDescription" name="book_desc" class="form-control md-textarea" length="50" rows="5"></textarea>
+                <textarea id="bookDescription" name="book_desc" class="form-control md-textarea" rows="5"></textarea>
 
             </div>
             <div>
@@ -65,9 +82,10 @@
                 Price: price,
                 Description: description,
                 Seller: seller
-                
+
             }).then(function () {
-                alert("A book had been successfully listed.")
+                window.alert("Your book was listed successfully!");
+                window.location = "viewAccount.html";
             }).catch(function () {
                 console.log("User has failed trying to list a book.");
             })
@@ -102,18 +120,18 @@
             }
         }
 
+
+
         function init() {
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
-                    console.log(`There is a user logged in. User: ${user}`);
-                    userStatus = true
+                    console.log(`A user is logged in: ${user.displayName}`)
                 } else {
-                    console.log(`No one is logged in`);
-                    userStatus = false
+                    console.log(`No user us logged in.`)
                 }
-            })
+            });
             document.getElementById("listButton").onclick = checkTextBox;
-        // When you click the button it will check the fields before you can list the book.
+            // When you click the button it will check the fields before you can list the book.
 
         }
         init();

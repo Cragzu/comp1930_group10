@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style/stylesheet.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -33,8 +33,7 @@
                 <h2 id="bookAuthor">[Author Name]</h2>
             </div>
 
-            <img class="bookImageListingPage"
-                src="images/bookPlaceholder.jpg" />
+            <img class="bookImageListingPage" src="images/bookPlaceholder.jpg" />
             <h1 id="price">Price: $placeholder</h1>
 
             <h3 id="seller">Seller: [Seller Name]</h3>
@@ -44,20 +43,24 @@
             </p>
 
             <div class="listingButtonContainer">
-                <a href="underConstruction.html">
+                <a href="shoppingCart.html">
                     <button type="button" class="btn btn-primary">View my Cart</button>
                 </a>
-                <a href="underConstruction.html">
-                    <button type="button" class="btn btn-primary">Add to Cart</button>
-                </a>
+                <!-- <a href="underConstruction.html"> -->
+                    <button type="button" class="btn btn-primary" id="addToCart">Add to Cart</button>
+                <!-- </a> -->
             </div>
 
         </div>
     </div>
 
     <script>
+        const docId = localStorage.getItem("docId");
+        const userDisplayName = localStorage.getItem("userDisplayName");
+        let cartIndex;
+
         function getCurrentData() {
-            let docId = localStorage.getItem("docId")
+
             console.log(docId)
             // Print out and see if we actually got a proper document ID or not. Warning will be shown if docId fails to get overwritten
 
@@ -70,7 +73,6 @@
             db.collection("books").doc(`${docId}`).onSnapshot(function (doc) {
                 // Try to access the data if the docId change is working.
 
-                // This currently doesn't work because we can't access the docId.
 
                 console.log(doc.data());
                 bookTitle.innerHTML = doc.data().Title;
@@ -79,18 +81,72 @@
                 bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
                 bookPrice.innerHTML = `Price: &#36;${doc.data().Price}`;
                 console.log("You have passed. You have accessed the document information.")
+                console.log(`This is the document id: ${doc.id}`)
                 // This console log should print if we don't have any errors.
+            })
+        }
+        function bookIteration() {
+            cartIndex = 1;
+            // Set the index at one so the first book that is listed will be called "book1"
+            console.log(`Book iteration is working`)
+            db.collection("users").doc(userDisplayName).collection("cart").get()
+                .then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        console.log(`The current docID is : ${doc.id}`)
+                        // doc.data() is never undefined for query doc snapshots
+                        if (doc.id == "book" + cartIndex) {
+                            console.log("We found book1")
+                            // If we find a book with the same name then we increase our index again.
+                            // It will keep going until it hits the non existing document
+                            // After that the cartIndex will stay the same number and we will make a new doucment with the current cartIndex. When adding to a cart the ways books are given ids is that it will always start with book1 and and gaps in number will be filled in.
+                            cartIndex += 1;
+                            console.log(`THis is the current cartINdex after it 1 gets added it it: ${cartIndex}`)
+                        } else {
+                            // After testing is done this else statement can be removed
+                            console.log("JK, there was no book1")
+                        }
+
+                    });
+                    addBookToCart();
+                });
+            console.log(`THis is the current cartINdex before the function sends it out: ${cartIndex}`)
+        }
+
+        function addBookToCart() {
+            // This function is supposed to add books to the logged in user cart
+            
+            db.collection("users").doc(userDisplayName).collection("cart").doc("book" + cartIndex).set({
+                bookId: docId,
+            }).then(function () {
+                console.log(`A book was added under the docID: book` + cartIndex)
+                
+            }).catch(function() {
+                console.log(`The book was not added to cart.`)
             })
 
         }
 
+
+
         function init() {
             // Run the functions in this script.
-            getCurrentData()
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    console.log(`There is a user logged in. User: ${user.displayName}`);
+                    userStatus = true
+                } else {
+                    console.log(`No one is logged in`);
+                    userStatus = false
+                }
+            })
+            getCurrentData();
+            // document.getElementById("addToCart").onclick = addBookToCart();
+            document.getElementById("addToCart").onclick = bookIteration;
         }
 
         init();
     </script>
 
 </body>
+
 </html>

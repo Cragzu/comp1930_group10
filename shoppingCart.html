@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StudySource | My Cart</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/stylesheet.css">
+    <link rel="stylesheet" href="style/shopping.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+</head>
+<body>
+
+<!--Our Scripts-->
+<script src="scripts/firebase_setup.js"></script>
+<script src="scripts/displayHeader.js"></script> <!--Header should always be displayed first-->
+
+<div class="container">
+    <div class="row centered backg-color-brown w-75">
+        <div class="col-4 text-center">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+        <div class="col-4 text-center">
+            <p>Book's Name</p>
+        </div>
+        <div class="col-4 text-center">
+            <p>Price</p>
+        </div>
+    </div>
+    <div class="row centered backg-color-brown w-75 margin-top-30">
+        <div class="col-4 text-center">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+        <div class="col-4 text-center">
+            <p>Book's Name</p>
+        </div>
+        <div class="col-4 text-center">
+            <p>Price</p>
+        </div>
+    </div>
+    <div class="row centered backg-color-brown w-75 margin-top-30">
+        <div class="col-4 text-center">
+            <i class="fa fa-book fa-2x"></i>
+        </div>
+        <div class="col-4 text-center">
+            <p>Book's Name</p>
+        </div>
+        <div class="col-4 text-center">
+            <p>Price</p>
+        </div>
+    </div>
+    <div class="centered w-75 margin-top-30">
+        <h4>Sipping and Processing: </h4>
+        <h4 class="margin-top-30">Total: </h4>
+        <h5 class="margin-top-30">Est. delivery: 2 weeks<br>
+                123 Address St</h5>
+    </div>
+    <div class="row centered w-75">
+        <div class="col-6 text-center">
+            <button class="btn btn-bg-color w-75 btn-hover">Clear&nbspCart</button>
+        </div>
+        <div class="col-6 text-center">
+            <a href="checkout.html" class="text-decoration-none"><button class="btn btn-bg-color w-75 btn-hover">Checkout</button></a>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    var user = firebase.auth().currentUser;
+    console.log(user);
+</script>
+
+</body>
+</html>
