@@ -63,9 +63,6 @@
 
         function getCurrentData() {
 
-            console.log(docId)
-            // Print out and see if we actually got a proper document ID or not. Warning will be shown if docId fails to get overwritten
-
             let bookTitle = document.getElementById("bookTitle");
             let bookAuthor = document.getElementById("bookAuthor");
             let bookDesc = document.getElementById("bookDescription");
@@ -75,43 +72,38 @@
             db.collection("books").doc(`${docId}`).onSnapshot(function (doc) {
                 // Try to access the data if the docId change is working.
 
-
                 console.log(doc.data());
                 bookTitle.innerHTML = doc.data().Title;
                 bookAuthor.innerHTML = `&nbsp;by ${doc.data().Author}`;
                 bookDesc.innerHTML = `Description: ${doc.data().Description}`;
                 bookSeller.innerHTML = `Seller: ${doc.data().Seller}`;
                 bookPrice.innerHTML = `Price: &#36;${doc.data().Price}`;
-                console.log("You have passed. You have accessed the document information.")
-                console.log(`This is the document id: ${doc.id}`)
-                // This console log should print if we don't have any errors.
+
             })
         }
         function bookIteration() {
             cartIndex = 1;
-            sameId = false;
             // Set the index at one so the first book that is listed will be called "book1"
-            console.log(`Book iteration is working`)
+            sameId = false;
+
+
             db.collection("users").doc(userDisplayName).collection("cart").get()
                 .then(function (querySnapshot) {
                     querySnapshot.forEach(function (doc) {
-                        console.log(`The current docID is : ${doc.id}`)
+
                         // doc.data() is never undefined for query doc snapshots
                         if (doc.id === "book" + pad(cartIndex, 5)) {
-                            console.log(doc.data().bookId)
+
                             if (doc.data().bookId === docId) {
-                                console.log(`This book already exists`)
+
                                 sameId = true;
                             }
-                            console.log(`We found book${cartIndex}`)
+
                             // If we find a book with the same name then we increase our index again.
                             // It will keep going until it hits the non existing document
                             // After that the cartIndex will stay the same number and we will make a new doucment with the current cartIndex. When adding to a cart the ways books are given ids is that it will always start with book1 and and gaps in number will be filled in.
                             cartIndex += 1;
-                            console.log(`THis is the current cartIndex after it 1 gets added it it: ${cartIndex}`)
-                        } else {
-                            // After testing is done this else statement can be removed
-                            console.log(`The user's cart does not contain book${cartIndex}`)
+
                         }
 
                     });
@@ -121,7 +113,9 @@
         }
 
         function pad(n, width, z) {
-            // This function will allow the index to be consistent with the firebase
+            // This function will allow the index to be consistent with the firebase.
+            // If I do pad(1, 5) I will get 00001 back.
+            // The only purpose of this function is to help sort the cart in Firebase.
             z = z || '0';
             n = n + '';
             return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
@@ -135,13 +129,13 @@
 
                     bookId: docId,
                 }).then(function () {
-                    console.log(`A book was added under the docID: book` + cartIndex)
+                    alert(`The book has been added to your cart!`)
 
                 }).catch(function () {
-                    console.log(`The book was not added to cart.`)
+                    console.log(`We tried adding the book to the cart, but something has caused it to fail.`)
                 })
             } else {
-                console.log(`The addBookToCart function is working, but there was already a book added to cart with the same ID.`)
+                alert(`You already added this book to your cart! Please view your cart to see it.`)
             }
         }
 
@@ -157,9 +151,8 @@
                     console.log(`No one is logged in`);
 
                 }
-            })
+            });
             getCurrentData();
-            // document.getElementById("addToCart").onclick = addBookToCart();
             document.getElementById("addToCart").onclick = bookIteration;
         }
 
