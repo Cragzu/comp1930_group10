@@ -60,7 +60,7 @@ function addOnClick() {
                 // Just move to the page
                 document.location.href = "bookListing.html"
             } else {
-                localStorage.setItem("docId", idList[j])
+                localStorage.setItem("docId", idList[j]);
                 document.location.href = "bookListing.html"
             }
         })
@@ -73,7 +73,7 @@ var idList = [];
 
 
 function createListings() {
-    book.get().then(function (querySnapshot) {
+    book.orderBy(`Title`).get().then(function (querySnapshot) {
 
         // We keep an index so we can assign to a tag later.
         querySnapshot.forEach(function (doc) {
@@ -81,12 +81,12 @@ function createListings() {
             let docDesc = doc.data().Description;
             let docName = doc.id;
             // This is to get the generated ID of the document
-            idList.push(docName)
+            idList.push(docName);
             // docName will keep the ID of each listing
             // console.log(docName)
-            localStorage.setItem("test", "test is working")
+            localStorage.setItem("test", "test is working");
             // test is to test localStorage is working
-            localStorage.setItem("docId", "If you see this the test failed.")
+            localStorage.setItem("docId", "If you see this the test failed.");
             // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
             let comp = new blockComponent(docTitle, docDesc, docName, index);
             comp.displayListingBlock();
@@ -101,21 +101,21 @@ function createListings() {
 
 
     })
-};
+}
 
 function init() {
-    console.log(`The init function ran`)
+    console.log(`The init function ran`);
     index = 0;
 
     book.get().then(snap => {
-        size = snap.size
+        size = snap.size;
         // This will return the number of how many documents are inside of the books collection
         console.log(`This is the size of the books document: ${size}`)
-    })
+    });
     createListings();
     
 
 }
 
-init()
+init();
 

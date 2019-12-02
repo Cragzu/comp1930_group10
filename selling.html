@@ -78,7 +78,7 @@
 
             db.collection("books").add({
                 Author: author,
-                Title: title,
+                Title: title[0].toUpperCase()+title.slice(1),
                 Price: price,
                 Description: description,
                 Seller: seller
