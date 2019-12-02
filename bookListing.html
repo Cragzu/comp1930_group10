@@ -97,13 +97,13 @@
                     querySnapshot.forEach(function (doc) {
                         console.log(`The current docID is : ${doc.id}`)
                         // doc.data() is never undefined for query doc snapshots
-                        if (doc.id === "book" + cartIndex) {
+                        if (doc.id === "book" + pad(cartIndex, 5)) {
                             console.log(doc.data().bookId)
-                            if (doc.data().bookId === docId){
+                            if (doc.data().bookId === docId) {
                                 console.log(`This book already exists`)
                                 sameId = true;
                             }
-                            console.log("We found book1")
+                            console.log(`We found book${cartIndex}`)
                             // If we find a book with the same name then we increase our index again.
                             // It will keep going until it hits the non existing document
                             // After that the cartIndex will stay the same number and we will make a new doucment with the current cartIndex. When adding to a cart the ways books are given ids is that it will always start with book1 and and gaps in number will be filled in.
@@ -111,19 +111,27 @@
                             console.log(`THis is the current cartIndex after it 1 gets added it it: ${cartIndex}`)
                         } else {
                             // After testing is done this else statement can be removed
-                            console.log("JK, there was no book1")
+                            console.log(`The user's cart does not contain book${cartIndex}`)
                         }
 
                     });
                     addBookToCart();
                 });
-            console.log(`THis is the current cartINdex before the function sends it out: ${cartIndex}`)
+
         }
+
+        function pad(n, width, z) {
+            // This function will allow the index to be consistent with the firebase
+            z = z || '0';
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        }
+
 
         function addBookToCart() {
             // This function is supposed to add books to the logged in user cart
-            if (sameId != true) {
-                db.collection("users").doc(userDisplayName).collection("cart").doc("book" + cartIndex).set({
+            if (sameId !== true) {
+                db.collection("users").doc(userDisplayName).collection("cart").doc("book" + pad(cartIndex, 5)).set({
 
                     bookId: docId,
                 }).then(function () {
@@ -132,7 +140,7 @@
                 }).catch(function () {
                     console.log(`The book was not added to cart.`)
                 })
-            }else{
+            } else {
                 console.log(`The addBookToCart function is working, but there was already a book added to cart with the same ID.`)
             }
         }
@@ -144,10 +152,10 @@
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     console.log(`There is a user logged in. User: ${user.displayName}`);
-                    userStatus = true
+
                 } else {
                     console.log(`No one is logged in`);
-                    userStatus = false
+
                 }
             })
             getCurrentData();
