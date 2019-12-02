@@ -2,6 +2,7 @@
 const book = db.collection("books");
 let size;
 let index;
+let idList;
 
 function blockComponent(title, desc, docId, i) {
     // This object constructor will take the book title, book description, document name ( which is docId), and i (which is index)
@@ -49,8 +50,9 @@ function blockComponent(title, desc, docId, i) {
 
     }
 }
+
 function addOnClick() {
-    for (let j = 0; j < size; j++) { 
+    for (let j = 0; j < size; j++) {
         document.getElementById(`${j}`).addEventListener("click", function () {
             // The goal of this event listener is to make it so the docId gets written to local storage then can be called later when we look at the listing page.
 
@@ -60,7 +62,7 @@ function addOnClick() {
                 // Just move to the page
                 document.location.href = "bookListing.html"
             } else {
-                localStorage.setItem("docId", idList[j])
+                localStorage.setItem("docId", idList[j]);
                 document.location.href = "bookListing.html"
             }
         })
@@ -69,11 +71,10 @@ function addOnClick() {
 
 
 
-var idList = [];
 
 
 function createListings() {
-    book.get().then(function (querySnapshot) {
+    book.orderBy(`Title`).get().then(function (querySnapshot) {
 
         // We keep an index so we can assign to a tag later.
         querySnapshot.forEach(function (doc) {
@@ -81,13 +82,9 @@ function createListings() {
             let docDesc = doc.data().Description;
             let docName = doc.id;
             // This is to get the generated ID of the document
-            idList.push(docName)
+            idList.push(docName);
             // docName will keep the ID of each listing
-            // console.log(docName)
-            localStorage.setItem("test", "test is working")
-            // test is to test localStorage is working
-            localStorage.setItem("docId", "If you see this the test failed.")
-            // docId is to see if I overwrite the localStorage correctly or not. If you see this on the other page console when clicking on the a book that means the overwrite has FAILED
+
             let comp = new blockComponent(docTitle, docDesc, docName, index);
             comp.displayListingBlock();
             index += 1;
@@ -101,21 +98,22 @@ function createListings() {
 
 
     })
-};
+}
 
 function init() {
-    console.log(`The init function ran`)
+    console.log(`The init function ran`);
     index = 0;
+    idList = [];
 
     book.get().then(snap => {
-        size = snap.size
+        size = snap.size;
         // This will return the number of how many documents are inside of the books collection
         console.log(`This is the size of the books document: ${size}`)
-    })
+    });
     createListings();
-    
+
 
 }
 
-init()
+init();
 

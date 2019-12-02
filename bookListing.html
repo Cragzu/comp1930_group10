@@ -58,6 +58,7 @@
         const docId = localStorage.getItem("docId");
         const userDisplayName = localStorage.getItem("userDisplayName");
         let cartIndex;
+        let sameId;
 
         function getCurrentData() {
 
@@ -87,6 +88,7 @@
         }
         function bookIteration() {
             cartIndex = 1;
+            sameId = false;
             // Set the index at one so the first book that is listed will be called "book1"
             console.log(`Book iteration is working`)
             db.collection("users").doc(userDisplayName).collection("cart").get()
@@ -94,13 +96,18 @@
                     querySnapshot.forEach(function (doc) {
                         console.log(`The current docID is : ${doc.id}`)
                         // doc.data() is never undefined for query doc snapshots
-                        if (doc.id == "book" + cartIndex) {
+                        if (doc.id === "book" + cartIndex) {
+                            console.log(doc.data().bookId)
+                            if (doc.data().bookId === docId){
+                                console.log(`This book already exists`)
+                                sameId = true;
+                            }
                             console.log("We found book1")
                             // If we find a book with the same name then we increase our index again.
                             // It will keep going until it hits the non existing document
                             // After that the cartIndex will stay the same number and we will make a new doucment with the current cartIndex. When adding to a cart the ways books are given ids is that it will always start with book1 and and gaps in number will be filled in.
                             cartIndex += 1;
-                            console.log(`THis is the current cartINdex after it 1 gets added it it: ${cartIndex}`)
+                            console.log(`THis is the current cartIndex after it 1 gets added it it: ${cartIndex}`)
                         } else {
                             // After testing is done this else statement can be removed
                             console.log("JK, there was no book1")
@@ -114,16 +121,19 @@
 
         function addBookToCart() {
             // This function is supposed to add books to the logged in user cart
-            
-            db.collection("users").doc(userDisplayName).collection("cart").doc("book" + cartIndex).set({
-                bookId: docId,
-            }).then(function () {
-                console.log(`A book was added under the docID: book` + cartIndex)
-                
-            }).catch(function() {
-                console.log(`The book was not added to cart.`)
-            })
+            if (sameId != true) {
+                db.collection("users").doc(userDisplayName).collection("cart").doc("book" + cartIndex).set({
 
+                    bookId: docId,
+                }).then(function () {
+                    console.log(`A book was added under the docID: book` + cartIndex)
+
+                }).catch(function () {
+                    console.log(`The book was not added to cart.`)
+                })
+            }else{
+                console.log(`The addBookToCart function is working, but there was already a book added to cart with the same ID.`)
+            }
         }
 
 
