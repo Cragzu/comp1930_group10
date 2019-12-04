@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>StudySource | User Account</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style/stylesheet.css">
     <link rel="stylesheet" href="style/.css">
+    <link rel="stylesheet" href="style/shopping.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -56,11 +58,11 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Min</label>
-                            <input type="number" class="form-control" placeholder="Min">
+                            <input type="number" min="0" class="form-control" placeholder="Min">
                         </div>
                         <div class="col-sm-6">
                             <label>Max</label>
-                            <input type="number" class="form-control" placeholder="Max">
+                            <input type="number" min="0" class="form-control" placeholder="Max">
                         </div>
                     </div>
                 </div>
@@ -70,7 +72,10 @@
                     Listed within the past: <span><i class="glyphicon glyphicon-triangle-bottom"></i></span>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" id="listed-book-dropdown" href="#">book 1</a>
+                    <a class="dropdown-item" id="listed-book-dropdown1" href="#">Less than 5 days</a><br/>
+                    <a class="dropdown-item" id="listed-book-dropdown2" href="#">Less than 15 days</a><br/>
+                    <a class="dropdown-item" id="listed-book-dropdown3" href="#">Less than one month</a><br/>
+                    <a class="dropdown-item" id="listed-book-dropdown4" href="#">Less than 3 months</a>
                 </div>
             </div>
             <button type="submit" class="btn" id="search-button">Search</button>
@@ -78,8 +83,11 @@
         <script>
             let dropdownBooks = document.getElementById("listed-book-dropdown")
             let buttonList = document.getElementById("button-list")
-            dropdownBooks.onclick = function(){
-                buttonList.innerHTML = dropdownBooks.innerHTML;
+            for(let i = 0; i < 4; i++){
+                dropdownBooks.onclick = function(){
+                buttonList.innerHTML = dropdownBooks.innerHTML + i;
+            }
+            
             }
         </script>
     </body>
