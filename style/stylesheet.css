@@ -1,3 +1,4 @@
+/*Default attributes*/
 *{
     box-sizing: border-box;
 }
@@ -17,6 +18,8 @@ h1 {
 p {
     font-size: 16px;
 }
+
+/*Classes*/
 .row {
     padding-top: 15px;
 }
@@ -67,8 +70,10 @@ p {
 }
 .clickable {
     cursor: pointer;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+/*IDs*/
 #mainHeader {
     background-color: #ACD0D4;
     min-height: 50px;
