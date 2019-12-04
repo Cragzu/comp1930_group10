@@ -13,9 +13,9 @@ their living space.
 - 
 - The `index.html` file is the main landing page, linking to other areas of the site.
 - All `html` files are different pages in our website, named according to what they are.
-- We have several `css` files, a main `stylesheet.css` containing most of our styles, and a few specialized ones
+- We have several `css` files in the `styles` folder, a main `stylesheet.css` containing most of our styles, and a few specialized ones
 containing specific styles for certain things.
-- Our `js` files contain scripts and components. the `display...` JavaScript files are for
+- Our `js` files contain scripts and components. They are located in the `scripts` folder. The `display...` JavaScript files are for
 displaying various components in order to make them reusable, such as the page header. Other JavaScript files
 contain functions for various features of our site. We also have a `firebase_setup.js` file containing our Firebase keys which are
 used throughout the project.
