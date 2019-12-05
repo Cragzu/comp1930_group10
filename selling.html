@@ -28,42 +28,45 @@
 <script src="scripts/firebase_setup.js"></script>
 <script src="scripts/displayHeader.js"></script>
 <!--Header should always be displayed first-->
-<h1> Selling </h1>
-<h4> Enter information about your book here. </h4>
 
-<div id="bookSellingForm">
-    <form>
-        <div>
-            <label for="bookTitle">
-                Title of Book:
-            </label>
-            <input type="text" id="bookTitle" name="book_title"
-                   placeholder="Writing In the Technical Fields 2nd Edition">
-        </div>
-        <div>
-            <label for="author">
-                Author:
-            </label>
-            <input type="text" id="authorName" name="author_name" placeholder="Thorsten Ewald">
-        </div>
-        <div>
-            <label for="bookPrice">
-                Price(CAD):
-            </label>
-            <input type="text" id="bookPrice" name="book_price" placeholder="50.50">
-        </div>
-        <div>
-            <label for="bookDescription">
-                Description:
-            </label>
-            <textarea id="bookDescription" name="book_desc" class="form-control md-textarea" rows="5"></textarea>
-
-        </div>
-        <div>
-            <input type="button" id="listButton" value="Post Listing">
-        </div>
-    </form>
+<div class="container">
+    <h1> Selling </h1>
+    <h4> Enter information about your book here. </h4>
+    <div id="bookSellingForm">
+        <form>
+            <div class="form-group">
+                <label class="font-weight-bold" for="bookTitle">
+                    Title of Book:
+                </label>
+                <input type="text" class="form-control w-75 d-inline" id="bookTitle" name="book_title"
+                        placeholder="Writing In the Technical Fields 2nd Edition">
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" for="author">
+                    Author:
+                </label>
+                <input type="text" class="form-control w-75 d-inline" id="authorName" name="author_name" placeholder="Thorsten Ewald">
+            </div>
+            <div>
+                <label class="font-weight-bold" for="bookPrice">
+                    Price(CAD):
+                </label>
+                <input type="text" class="form-control w-75 d-inline" id="bookPrice" name="book_price" placeholder="50.50">
+            </div>
+            <div>
+                <label class="font-weight-bold" for="bookDescription">
+                    Description:
+                </label>
+                <textarea id="bookDescription" name="book_desc" class="form-control md-textarea" rows="5"></textarea>
+    
+            </div>
+            <div>
+                <input type="button" class="btn margin-bottom-15 btn-bg-color btn-hover margin-top-30" id="listButton" value="Post Listing">
+            </div>
+        </form>
+    </div>   
 </div>
+
 
 <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>

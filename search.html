@@ -37,22 +37,22 @@
         <div class="container">
             <form>
                 <div class="form-group">
-                    <label>Title &nbsp<i class="glyphicon glyphicon-question-sign"></i></label>
+                    <label>Title &nbsp<i class="fa fa-question-circle" aria-hidden="true"></i></label>
                     <input type="text" class="form-control" placeholder="Title...">
                 </div>
                 <div class="form-group">
-                    <label>ISBN &nbsp<i class="glyphicon glyphicon-question-sign"></i></label>
+                    <label>ISBN &nbsp<i class="fa fa-question-circle" aria-hidden="true"></i></label>
                     <input type="text" class="form-control" placeholder="ISBN Number ...">
                 </div>
                 <div class="form-group">
-                    <label>Author &nbsp<i class="glyphicon glyphicon-question-sign"></i></label>
+                    <label>Author &nbsp<i class="fa fa-question-circle" aria-hidden="true"></i></label>
                     <input type="text" class="form-control" placeholder="Author's Name ...">
                 </div>
                 <div class="form-group">
-                    <label>Keyword &nbsp<i class="glyphicon glyphicon-question-sign"></i></label>
+                    <label>Keyword &nbsp<i class="fa fa-question-circle" aria-hidden="true"></i></label>
                     <input type="text" class="form-control" placeholder="Key ...">
                 </div>
-                <h3 class="font-weight-bold">Price Range (in CAD) <i class="glyphicon glyphicon-question-sign"></i></h3>
+                <h3 class="font-weight-bold">Price Range (in CAD) <i class="fa fa-question-circle" aria-hidden="true"></i></h3>
                 <hr id="hr-divider">
                 <div class="form-group">
                     <div class="row">
@@ -68,22 +68,23 @@
                 </div>
             </form>
             <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" id="button-list" data-toggle="dropdown">
+                <button type="button" class="btn btn-bg-color dropdown-toggle" id="button-list" data-toggle="dropdown">
                     Listed within the past: <span><i class="glyphicon glyphicon-triangle-bottom"></i></span>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" id="listed-book-dropdown1" href="#">Less than 5 days</a><br/>
-                    <a class="dropdown-item" id="listed-book-dropdown2" href="#">Less than 15 days</a><br/>
-                    <a class="dropdown-item" id="listed-book-dropdown3" href="#">Less than one month</a><br/>
-                    <a class="dropdown-item" id="listed-book-dropdown4" href="#">Less than 3 months</a>
+                    <a class="dropdown-item btn-hover text-decoration-none" id="listed-book-dropdown1" href="#">Less than 5 days</a><br/>
+                    <a class="dropdown-item btn-hover text-decoration-none" id="listed-book-dropdown2" href="#">Less than 15 days</a><br/>
+                    <a class="dropdown-item btn-hover text-decoration-none" id="listed-book-dropdown3" href="#">Less than one month</a><br/>
+                    <a class="dropdown-item btn-hover text-decoration-none" id="listed-book-dropdown4" href="#">Less than 3 months</a>
                 </div>
             </div>
             <button type="submit" class="btn" id="search-button">Search</button>
         </div>
         <script>
-            let dropdownBooks = document.getElementById("listed-book-dropdown")
+            
             let buttonList = document.getElementById("button-list")
             for(let i = 0; i < 4; i++){
+                let dropdownBooks = document.getElementById("listed-book-dropdown")
                 dropdownBooks.onclick = function(){
                 buttonList.innerHTML = dropdownBooks.innerHTML + i;
             }
