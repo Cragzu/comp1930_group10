@@ -89,7 +89,7 @@ function createListings() {
             comp.displayListingBlock();
             index += 1;
             // Add one to the index to make the next id be unique
-            console.log(doc.id, " => ", doc.data())
+
         });
 
         addOnClick();
@@ -101,14 +101,13 @@ function createListings() {
 }
 
 function init() {
-    console.log(`The init function ran`);
     index = 0;
     idList = [];
 
     book.get().then(snap => {
         size = snap.size;
         // This will return the number of how many documents are inside of the books collection
-        console.log(`This is the size of the books document: ${size}`)
+
     });
     createListings();
 
